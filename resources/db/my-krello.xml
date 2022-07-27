@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?><Db flnm="my-krello" nm="my-krello" ver="1.3.4">
+  <VerLbl/>
+  <VerNotes/>
+  <DefTblOpts/>
+  <DocFolder>/home/jalf/Documentos</DocFolder>
+  <Sch Cm="" nm="schemaA">
+    <Tbl UsSo="1" nm="krl_board">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</TblOpts>
+      <Pk ClNs="brd_id" nm="pkkrl_board"/>
+      <Cl au="1" df="" nm="brd_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="brd_name" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP()" nm="brd_created_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="brd_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="krl_column">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</TblOpts>
+      <Pk ClNs="clm_id" nm="pkkrl_column"/>
+      <Cl au="1" df="" nm="clm_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clm_name" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP()" nm="clm_created_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clm_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="krl_column_for_board">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</TblOpts>
+      <Pk ClNs="cfb_id" nm="pkkrl_column_for_board"/>
+      <Cl au="1" df="" nm="cfb_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="brd_id_board" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clm_id_column" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP()" nm="cfb_created_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cfb_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="fk_krl_column_for_board_krl_board" prLkCl="brd_id" upAc="1">
+        <PrTb mn="0" nm="krl_board" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="krl_column_for_board" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="brd_id_board" prCl="brd_id"/>
+      </Fk>
+      <Fk deAc="1" nm="fk_krl_column_for_board_krl_column" prLkCl="clm_id" upAc="1">
+        <PrTb mn="0" nm="krl_column" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="krl_column_for_board" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="clm_id_column" prCl="clm_id"/>
+      </Fk>
+      <Idx clu="0" ftx="0" nm="krl_column_for_board_brd_id_board_clm_id_column_Idx" spa="0" unq="1">
+        <ClNs>brd_id_board, clm_id_column</ClNs>
+        <OptTx>USES BTREE</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="krl_column_for_board_brd_id_board_Idx" spa="0" unq="0">
+        <ClNs>brd_id_board</ClNs>
+        <OptTx>USES BTREE</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="krl_column_for_board_clm_id_column_Idx" spa="0" unq="0">
+        <ClNs>clm_id_column</ClNs>
+        <OptTx>USES BTREE</OptTx>
+      </Idx>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="krl_log">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</TblOpts>
+      <Pk ClNs="log_id" nm="pkkrl_log"/>
+      <Cl au="1" df="" nm="log_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tsk_id_task" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clm_id_previous" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clm_id_current" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP()" nm="log_created_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="fk_krl_log_krl_column_current" prLkCl="clm_id" upAc="1">
+        <PrTb mn="0" nm="krl_column" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="krl_log" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="clm_id_current" prCl="clm_id"/>
+      </Fk>
+      <Fk deAc="1" nm="fk_krl_log_krl_column_previous" prLkCl="clm_id" upAc="1">
+        <PrTb mn="0" nm="krl_column" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="krl_log" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="clm_id_previous" prCl="clm_id"/>
+      </Fk>
+      <Fk deAc="1" nm="fk_krl_log_krl_task" prLkCl="tsk_id" upAc="1">
+        <PrTb mn="0" nm="krl_task" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="krl_log" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="tsk_id_task" prCl="tsk_id"/>
+      </Fk>
+      <Idx clu="0" ftx="0" nm="krl_log_clm_id_current_Idx" spa="0" unq="0">
+        <ClNs>clm_id_current</ClNs>
+        <OptTx>USES BTREE</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="krl_log_clm_id_previous_Idx" spa="0" unq="0">
+        <ClNs>clm_id_previous</ClNs>
+        <OptTx>USES BTREE</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="krl_log_tsk_id_task_Idx" spa="0" unq="0">
+        <ClNs>tsk_id_task</ClNs>
+        <OptTx>USES BTREE</OptTx>
+      </Idx>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="krl_task">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci</TblOpts>
+      <Pk ClNs="tsk_id" nm="pkkrl_task"/>
+      <Cl au="1" df="" nm="tsk_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clm_id_column" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="brd_id_board" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="0" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tsk_name" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tsk_description" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="2000" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tsk_delivery_date" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP()" nm="tsk_created_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tsk_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="fk_krl_task_krl_board" prLkCl="brd_id" upAc="1">
+        <PrTb mn="0" nm="krl_board" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="krl_task" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="brd_id_board" prCl="brd_id"/>
+      </Fk>
+      <Fk deAc="1" nm="fk_krl_task_krl_column" prLkCl="clm_id" upAc="1">
+        <PrTb mn="0" nm="krl_column" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="krl_task" oe="1" sch="schemaA" zr="0"/>
+        <ClPr cdCl="clm_id_column" prCl="clm_id"/>
+      </Fk>
+      <Idx clu="0" ftx="0" nm="krl_task_brd_id_Idx" spa="0" unq="0">
+        <ClNs>brd_id_board</ClNs>
+        <OptTx>USES BTREE</OptTx>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="krl_task_clm_id_brd_id_Idx" spa="0" unq="0">
+        <ClNs>clm_id_column, brd_id_board</ClNs>
+        <OptTx/>
+      </Idx>
+      <Idx clu="0" ftx="0" nm="krl_task_clm_id_Idx" spa="0" unq="0">
+        <ClNs>clm_id_column</ClNs>
+        <OptTx>USES BTREE</OptTx>
+      </Idx>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <CustomTypes/>
+  </Sch>
+  <Dgm nm="diagramA">
+    <RnCf ClkAct="true" FtSz="12" lkStgy="OffsetDirect" zm="1.0">
+      <VbCfg>
+        <Fg ky="Auto Number" vl="0"/>
+        <Fg ky="Check" vl="0"/>
+        <Fg ky="Comment" vl="0"/>
+        <Fg ky="Data Type" vl="1"/>
+        <Fg ky="Default" vl="0"/>
+        <Fg ky="ENUM Values" vl="0"/>
+        <Fg ky="Length" vl="1"/>
+        <Fg ky="Name" vl="1"/>
+        <Fg ky="Nullable" vl="0"/>
+        <Fg ky="Schema Name" vl="0"/>
+        <Fg ky="Signed" vl="0"/>
+      </VbCfg>
+    </RnCf>
+    <DiaProps>
+      <Show AllCols="1" FkCols="1" FkNms="0" PkCols="1"/>
+      <ErNotation>BarkerErNotation</ErNotation>
+      <DbTableRectangleFill>HeaderFooterFill</DbTableRectangleFill>
+      <svg path=""/>
+    </DiaProps>
+    <TbGl bkCl="ff4c78ff" sch="schemaA" tbl="krl_column" x="384" y="182"/>
+    <TbGl bkCl="ff4c78ff" sch="schemaA" tbl="krl_board" x="385" y="303"/>
+    <TbGl bkCl="ff4c78ff" sch="schemaA" tbl="krl_column_for_board" x="747" y="220"/>
+    <TbGl bkCl="ff4c78ff" sch="schemaA" tbl="krl_task" x="12" y="208"/>
+    <TbGl bkCl="ff4c78ff" sch="schemaA" tbl="krl_log" x="53" y="14"/>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.krl_column_for_board.fk_krl_column_for_board_krl_board" parentEdge="EAST" positioner="TwoLineUserLinkPositioner">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.krl_column_for_board.fk_krl_column_for_board_krl_column" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="schemaA.krl_log.fk_krl_log_krl_column_current" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="schemaA.krl_log.fk_krl_log_krl_column_previous" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="schemaA.krl_log.fk_krl_log_krl_task" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="schemaA.krl_task.fk_krl_task_krl_board" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="" nm="schemaA.krl_task.fk_krl_task_krl_column" parentEdge="" positioner="">
+      <positionableLines/>
+    </FkGl>
+    <Notes/>
+    <Zones/>
+  </Dgm>
+  <RnmMgr>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm nNm="krl_column" oNm="column"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_column" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="clm_id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_board" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="brd_id" oNm="tbl_id"/>
+      <Rnm nNm="tbl_id" oNm="tlb_id"/>
+      <Rnm nNm="tlb_id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_board" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="brd_name" oNm="tbl_name"/>
+      <Rnm nNm="tbl_name" oNm="tbl__name"/>
+      <Rnm nNm="tbl__name" oNm="tlb_name"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_column_for_board" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="cfb_id" oNm="cft_id"/>
+      <Rnm nNm="cft_id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_column_for_board" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="brd_id_board" oNm="tbl_id_table"/>
+      <Rnm nNm="tbl_id_table" oNm="tbl_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_column_for_board" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="clm_id_column" oNm="clm_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_task" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="tsk_id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm nNm="krl_board" oNm="krl_table"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_board" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="brd_updated_at" oNm="tbl_updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_board" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="brd_created_at" oNm="tbl_created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm nNm="krl_column_for_board" oNm="krl_column_for_table"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_column_for_board" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="cfb_created_at" oNm="cft_created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_column_for_board" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="cfb_updated_at" oNm="cft_updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_task" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="clm_id_column" oNm="clm_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_task" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="brd_id_board" oNm="brd_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm nNm="krl_sate" oNm="krl_ate"/>
+      <Rnm nNm="krl_ate" oNm="state"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_sate" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="ste_id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_log" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="log_id" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_log" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="tsk_id_task" oNm="tsk_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="krl_log" SupCls="Schema" SupNme="schemaA">
+      <Rnm nNm="clm_id_previous" oNm="clm_id"/>
+    </RnmCh>
+  </RnmMgr>
+  <DbDocOptionMgr>
+    <BasicOptionMgr>
+      <Name>db.doc.option.mgr</Name>
+      <BoolOpt lbl="Diagrams" nm="doc.diagrams" on="1" spl="0"/>
+      <BoolOpt lbl="Foreign Keys" nm="doc.fks" on="1" spl="0"/>
+      <BoolOpt lbl="Indexes" nm="doc.indexes" on="1" spl="0"/>
+      <BoolOpt lbl="Overwrite CSS File" nm="doc.overwrite.css" on="1" spl="0"/>
+      <BoolOpt lbl="Procedures" nm="doc.procs" on="1" spl="0"/>
+      <BoolOpt lbl="Schemas" nm="doc.schemas" on="1" spl="0"/>
+      <BoolOpt lbl="Sequences" nm="doc.sequences" on="1" spl="0"/>
+      <BoolOpt lbl="Tables" nm="doc.tables" on="1" spl="0"/>
+      <BoolOpt lbl="Triggers" nm="doc.triggers" on="1" spl="0"/>
+      <BoolOpt lbl="Views" nm="doc.views" on="1" spl="0"/>
+    </BasicOptionMgr>
+  </DbDocOptionMgr>
+  <OpenEditors>
+    <OpenEditor ClsNm="Diagram" fqn="null.diagramA" selected="1"/>
+  </OpenEditors>
+  <TreePaths>
+    <TreePath/>
+    <TreePath>/Schemas (1)</TreePath>
+    <TreePath>/Schemas (1)/schemaA</TreePath>
+    <TreePath>/Schemas (1)/schemaA/Tables (5)</TreePath>
+  </TreePaths>
+  <SqlTexts/>
+</Db>
