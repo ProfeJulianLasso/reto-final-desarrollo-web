@@ -21,36 +21,34 @@ public class BoardController {
 
     @Autowired
     private MyResponseUtility response;
-
     @Autowired
     private BoardService boardService;
 
-    @GetMapping(path = "/api/v1/boards")
+    @GetMapping(path = "/board")
     public ResponseEntity<MyResponseUtility> index() {
         response.data = boardService.getAll();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/api/v1/board/{id}")
+    @GetMapping(path = "/board/{id}")
     public ResponseEntity<MyResponseUtility> getBoardById(@PathVariable(value = "id") Integer id) {
         response.data = boardService.findById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/api/v1/board")
+    @PostMapping(path = "/board")
     public ResponseEntity<MyResponseUtility> create(@RequestBody BoardDomain board) {
         response.data = boardService.create(board);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/api/v1/board/{id}")
-    public ResponseEntity<MyResponseUtility> put(@PathVariable(value = "id") Integer id,
-            @RequestBody BoardDomain board) {
+    @PutMapping(path = "/board/{id}")
+    public ResponseEntity<MyResponseUtility> put(@PathVariable(value = "id") Integer id, @RequestBody BoardDomain board) {
         response.data = boardService.update(id, board);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @DeleteMapping(path = "/api/v1/board/{id}")
+    @DeleteMapping(path = "/board/{id}")
     public ResponseEntity<MyResponseUtility> delete(@PathVariable(value = "id") Integer id) {
         response.data = boardService.delete(id);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
