@@ -37,8 +37,22 @@ public class TaskController {
 
     @PutMapping(path = "/task/{id}")
     public ResponseEntity<MyResponseUtility> put(@PathVariable("id") Integer id, @RequestBody TaskDomain task){
-        response.data = taskService.update(id,task);
+
+        TaskDomain taskUpdate = taskService.findById(id);
+
+        taskUpdate.setName(task.getName());
+        taskUpdate.setDescription(task.getDescription());
+        taskUpdate.setColumn(task.getColumn());
+        taskUpdate.setBoard(task.getBoard());
+        taskUpdate.setDelivery(task.getDelivery());
+        taskUpdate.setCreatedT(task.getCreatedT());
+        taskUpdate.setUpdatedT(task.getUpdatedT());
+        taskUpdate.setLogs(task.getLogs());
+
+        response.data = taskService.update(taskUpdate);
+
         return new ResponseEntity<>(response, HttpStatus.OK);
+
     }
 
 }

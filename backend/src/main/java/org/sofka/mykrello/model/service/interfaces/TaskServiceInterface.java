@@ -8,6 +8,6 @@ public interface TaskServiceInterface {
     public List<TaskDomain> findAll();
     public TaskDomain findById(Integer id);
     public TaskDomain create(TaskDomain task);
-    public TaskDomain update(Integer id, TaskDomain task);
+    public TaskDomain update(TaskDomain task);
     public TaskDomain delete(Integer id);
 }

@@ -41,16 +41,8 @@ public class TaskService implements TaskServiceInterface {
     }
 
     @Override
-    public TaskDomain update(Integer id, TaskDomain task) {
-        Optional<TaskDomain> taskUpdate = taskRepository.findById(id);
-
-        if(taskUpdate.isPresent()){
-            var taskSend = taskRepository.save(task);
-            return taskSend;
-        } else {
-            return null;
-        }
-
+    public TaskDomain update(TaskDomain task) {
+        return taskRepository.save(task);
     }
 
     @Override
