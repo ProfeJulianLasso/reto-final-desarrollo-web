@@ -9,5 +9,5 @@ public interface TaskServiceInterface {
     public TaskDomain findById(Integer id);
     public TaskDomain create(TaskDomain task);
     public TaskDomain update(TaskDomain task);
-    public TaskDomain delete(Integer id);
+    public void delete(Integer id);
 }

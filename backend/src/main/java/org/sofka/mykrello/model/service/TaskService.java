@@ -46,17 +46,8 @@ public class TaskService implements TaskServiceInterface {
     }
 
     @Override
-    public TaskDomain delete(Integer id) {
-
-        Optional<TaskDomain> taskDelete = taskRepository.findById(id);
-
-        if (taskDelete.isPresent()) {
-            taskRepository.deleteById(id);
-        } else {
-            log.info("No se encontro a la tarea");
-        }
-
-        return taskDelete.orElse(null);
-
+    public void delete(Integer id) {
+        taskRepository.deleteById(id);
     }
+
 }

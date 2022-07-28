@@ -55,4 +55,13 @@ public class TaskController {
 
     }
 
+    @DeleteMapping(path = "/task/{id}")
+    public ResponseEntity<MyResponseUtility> delete(@PathVariable("id") Integer id){
+
+        response.data =  taskService.findById(id);
+        taskService.delete(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
+    }
+
 }
