@@ -18,7 +18,7 @@ import lombok.Value;
 
 /**
  * Clase que permite representar las tablas como clases; ademas de indicar las relaciones entre ellas.
- * @author Jorge montoya
+ * @author Jorge Montoya
  * @author Juan David Quimbayo
  * @version 1.0
  */
@@ -37,8 +37,7 @@ public class TaskDomain implements Serializable {
     /**
      * se indica una relacion de muchas tareas a una columna
      */
-    @ManyToOne(/*fetch = FetchType.LAZY,*/ targetEntity = ColumnDomain.class, optional = false, cascade = CascadeType.DETACH,fetch = FetchType.EAGER) // refe
-    //@JsonBackReference(value = "taskForColumn") // back si estas en many
+    @ManyToOne(targetEntity = ColumnDomain.class, optional = false, cascade = CascadeType.DETACH,fetch = FetchType.EAGER) // refe
     @JsonManagedReference(value = "taskForColumn")
     @JsonIgnore
     @JoinColumn( name = "clm_id_column",insertable =false, updatable=false ) // column foranea
@@ -47,8 +46,7 @@ public class TaskDomain implements Serializable {
     /**
      * se indica la relacion de muchas tareas a un Tablero
      */
-    @ManyToOne(/*fetch = FetchType.LAZY,*/targetEntity = BoardDomain.class, optional = false, cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
-    //@JsonBackReference(value = "taskForBoard")
+    @ManyToOne(targetEntity = BoardDomain.class, optional = false, cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
     @JsonManagedReference(value = "taskForBoard")
     @JsonIgnore
     @JoinColumn( name = "brd_id_board", insertable =false, updatable=false)
@@ -59,6 +57,7 @@ public class TaskDomain implements Serializable {
      */
     @Column( name = "clm_id_column",insertable =true, updatable=true)
     private Integer idColumn;
+
     /**
      * representa la columna de la tabla task llamada  brd_id_board
      */
@@ -71,20 +70,28 @@ public class TaskDomain implements Serializable {
     @Column( name = "tsk_name", nullable = false)
     private String name;
 
+
     /**
      * representa la columna correspondinte a la descripcion de la tabla task
      */
     @Column( name = "tsk_description", nullable = false)
     private String description;
 
-
-
+    /**
+     * representa la columna correspondinte a la fecha de creacion de la tabla task
+     */
     @Column(name="tsk_delivery_date")
     private Date deliveryDate;
 
+    /**
+     * representa la columna correspondinte a la fecha de creacion de la tabla task
+     */
     @Column(name="tsk_created_at")
     private Instant create;
 
+    /**
+     * representa la columna correspondinte a la fecha de actualizacion de la tabla task
+     */
     @Column(name="tsk_updated_at")
     private Date updated;
 

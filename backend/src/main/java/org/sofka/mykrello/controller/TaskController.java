@@ -11,17 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(value = "*")
 @RestController
 /**
-<<<<<<< HEAD
  * La clase TaskService es la encargada de realizar
  * las operaciones de CRUD de la entidad Task.
-=======
- *  clase que permite tener el control de las tareas, introducir el Crud
- *
- *  con la URL.
  * @author Jorge Montoya
  * @author Juan David Quimbayo
  * @version 1
->>>>>>> 043ae1c2b2bfd004ef0a5b841c66bcd2fe32e909
  */
 public class TaskController {
 
@@ -85,7 +79,6 @@ public class TaskController {
     public ResponseEntity<MyResponseUtility> delete(@PathVariable(value = "id") Integer id) {
         try {
             response.data = taskService.delete(id);
-
         }
         catch (Exception e){
             Integer x =0;

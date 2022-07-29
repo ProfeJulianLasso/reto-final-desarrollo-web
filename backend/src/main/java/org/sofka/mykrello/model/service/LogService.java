@@ -11,13 +11,11 @@ public class LogService implements LogServiceInterface {
 
     @Override
     public List<LogDomain> findById(Integer id) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public LogDomain create(LogDomain log) {
-        // TODO Auto-generated method stub
         return null;
     }
 }

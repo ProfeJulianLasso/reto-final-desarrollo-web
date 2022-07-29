@@ -67,8 +67,7 @@ public class BoardController {
      * @return ResponseEntity<MyResponseUtility>
      */
     @PutMapping(path = "/api/v1/board/{id}")
-    public ResponseEntity<MyResponseUtility> put(@PathVariable(value = "id") Integer id,
-                                                 @RequestBody BoardDomain board) {
+    public ResponseEntity<MyResponseUtility> put(@PathVariable(value = "id") Integer id, @RequestBody BoardDomain board) {
         response.data = boardService.update(id, board);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -85,9 +84,7 @@ public class BoardController {
             response.data = boardService.delete(id);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         }catch(Exception e){
-
             return null;
-
         }
     }
 }

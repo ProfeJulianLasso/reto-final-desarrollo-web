@@ -30,7 +30,6 @@ public class TaskService implements TaskServiceInterface {
 
     @Override
     public List<TaskDomain> findAllTasksById(Integer idBoard) {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -38,23 +37,18 @@ public class TaskService implements TaskServiceInterface {
     @Transactional(readOnly = true)
 
     public TaskDomain findById(Integer id) {
-        // TODO Auto-generated method stub
         Optional<TaskDomain> tarea = taskRepository.findById(id);
         return tarea.isPresent() ? tarea.get() : null;
-
     }
 
     @Override
     public TaskDomain create(TaskDomain task) {
-
         return taskRepository.save(task);
     }
 
     @Override
     public TaskDomain update(Integer id, TaskDomain task) {
-
         task.setId(id);
-
         var a = taskRepository.save(task);
         return a;
     }
@@ -65,14 +59,12 @@ public class TaskService implements TaskServiceInterface {
         try {
             var taskDomain = taskRepository.findById(id);
             //System.out.println(taskDomain.get());
-
             taskRepository.deleteById(id);
             return taskDomain.get();
         }
         catch (Exception e)
         {
             System.out.println(e.toString());
-
             return null;
         }
 
