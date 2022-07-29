@@ -1,5 +1,4 @@
 package org.sofka.mykrello.model.domain;
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -16,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -35,13 +36,13 @@ public class ColumnDomain implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "clm_id", nullable = false)
+    @Column(name = "clm_id")
     private Integer id;
 
-    @Column(name = "clm_name", nullable = false, length = 100)
+    @Column(name = "clm_name",  length = 100)
     private String name;
 
-    @Column(name = "clm_created_at", nullable = false, updatable = false)
+    @Column(name = "clm_created_at",  updatable = false)
     private Instant createdAt = Instant.now();
 
     @Column(name = "clm_updated_at")
@@ -49,14 +50,23 @@ public class ColumnDomain implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = LogDomain.class, cascade = CascadeType.ALL, mappedBy = "previous")
     @JsonManagedReference(value = "logPrevious")
+    @JsonIgnore
     private List<LogDomain> logPrevious = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = LogDomain.class, cascade = CascadeType.ALL, mappedBy = "current")
     @JsonManagedReference(value = "logCurrent")
+    @JsonIgnore
     private List<LogDomain> logCurrent = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = ColumnForBoardDomain.class, cascade = CascadeType.ALL, mappedBy = "column")
     @JsonManagedReference(value = "columnForBoards")
+    @JsonIgnore
     private List<ColumnForBoardDomain> columnForBoards = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = TaskDomain.class, cascade = CascadeType.ALL, mappedBy = "columnTask")
+    //@JsonManagedReference(value = "taskForColumn")
+    @JsonBackReference(value = "taskForColumn")
+    //@JsonIgnore
+    private List<TaskDomain> task = new ArrayList<>();
 
 }
