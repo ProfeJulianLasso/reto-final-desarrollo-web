@@ -10,13 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(value = "*")
-
-/**
- * Metodo que retorna todos los registros de la tabla Log.
- * @author Jorge Montoya
- * @author Juan David Quimbayo
- * @version 1
- */
 public class LogController {
 
     @Autowired
@@ -25,22 +18,13 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    /**
-     * metodo que s permite obtener el log por medio de su id
-     * @param id
-     * @return
-     */
+
     @GetMapping(path = "/api/v1/log/{id}")
     public ResponseEntity<MyResponseUtility> getLogById(@PathVariable(value = "id") Integer id) {
         response.data = logService.findById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    /**
-     * metodo que permite crear un nuevo Log.
-     * @param log
-     * @return
-     */
     @PostMapping(path = "/api/v1/log")
     public ResponseEntity<MyResponseUtility> create(@RequestBody LogDomain log) {
         response.data = logService.create(log);

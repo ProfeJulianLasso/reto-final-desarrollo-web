@@ -1,4 +1,5 @@
 package org.sofka.mykrello.model.domain;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;

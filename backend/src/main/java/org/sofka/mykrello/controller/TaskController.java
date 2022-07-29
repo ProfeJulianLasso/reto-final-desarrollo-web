@@ -1,5 +1,6 @@
 package org.sofka.mykrello.controller;
 
+
 import org.sofka.mykrello.model.domain.TaskDomain;
 import org.sofka.mykrello.model.service.TaskService;
 import org.sofka.mykrello.utilities.MyResponseUtility;
@@ -17,12 +18,12 @@ public class TaskController {
 
     @Autowired
     private TaskService taskService;
-    /*
-       @GetMapping(path = "/api/v1/task")
-        public ResponseEntity<MyResponseUtility> index() {
-            response.data = taskService.getAll();
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }*/
+/*
+   @GetMapping(path = "/api/v1/task")
+    public ResponseEntity<MyResponseUtility> index() {
+        response.data = taskService.getAll();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }*/
     @GetMapping(path = "/api/v1/task/{id}")
     public ResponseEntity<MyResponseUtility> getTaskById(@PathVariable(value = "id") Integer id) {
         response.data = taskService.findById(id);
