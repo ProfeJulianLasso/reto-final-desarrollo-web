@@ -25,7 +25,11 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
-    @GetMapping(path = "/api/v1/boards")
+    /**
+     *
+     * @return
+     */
+    @GetMapping(path = "/api/v1/board")
     public ResponseEntity<MyResponseUtility> index() {
         response.data = boardService.getAll();
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -52,8 +56,15 @@ public class BoardController {
 
     @DeleteMapping(path = "/api/v1/board/{id}")
     public ResponseEntity<MyResponseUtility> delete(@PathVariable(value = "id") Integer id) {
-        response.data = boardService.delete(id);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        try {
+            response.data = boardService.delete(id);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        }catch(Exception e){
+
+            return null;
+
+        }
+
     }
 
 }

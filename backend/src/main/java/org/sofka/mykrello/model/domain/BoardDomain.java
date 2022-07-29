@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -38,17 +40,26 @@ public class BoardDomain implements Serializable {
     @Column(name = "brd_id", nullable = false)
     private Integer id;
 
-    @Column(name = "brd_name", nullable = false, length = 100)
+    @Column(name = "brd_name", length = 100)
     private String name;
 
-    @Column(name = "brd_created_at", nullable = false, updatable = false)
+    @Column(name = "brd_created_at", updatable = false)
     private Instant createdAt = Instant.now();
 
     @Column(name = "brd_updated_at")
     private Instant updatedAt;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = ColumnForBoardDomain.class, cascade = CascadeType.ALL, mappedBy = "board")
+    //@JsonIgnore
     @JsonManagedReference(value = "columnsForBoard")
     private List<ColumnForBoardDomain> columnsForBoard = new ArrayList<>();
+
+
+
+    @OneToMany(fetch = FetchType.EAGER /*LAZY*/, targetEntity = TaskDomain.class, cascade = CascadeType.ALL, mappedBy = "boardTask")
+    //@JsonIgnore
+    //@JsonManagedReference(value = "taskForBoard")
+    @JsonBackReference(value = "taskForBoard")
+    private List<TaskDomain> task = new ArrayList<>();
 
 }
