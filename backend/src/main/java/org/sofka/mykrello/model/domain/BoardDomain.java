@@ -24,14 +24,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 //@Data
-@Getter @Setter
-@Entity
-@Table(name = "krl_board")
+@Getter @Setter //@Getter @Setter sirve para indicar que los atributos de la clase se pueden acceder desde fuera de la clase.
+@Entity //@Entity sirve para indicar que la clase es una entidad.
+@Table(name = "krl_board") //@Table sirve para indicar que la tabla se almacena en una tabla.
 public class BoardDomain implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-
     @PreUpdate
     public void preUpdate() {
         if (this.updatedAt == null)
@@ -39,28 +38,52 @@ public class BoardDomain implements Serializable {
     }
 
 
+    /**
+     * @Id sirve para indicar que es la clave primaria de la tabla.
+     * @GeneratedValue(strategy = GenerationType.IDENTITY) sirve para indicar que la clave primaria se genera automaticamente.
+     * @Column(name = "brd_id", nullable = false) sirve para indicar que la clave primaria se almacena en una columna.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brd_id", nullable = false)
     private Integer id;
 
 
+    /**
+     * @Column sirve para indicar que la columna se almacena en una tabla.
+     * @Column(name = "brd_name", nullable = false, length = 100) sirve para indicar que la columna se almacena en una tabla con un nombre y una longitud.
+     */
     @Column(name = "brd_name", nullable = false, length = 100)
     private String name;
 
 
+    /**
+     * @Column(name = "brd_created_at", nullable = false, updatable = false) sirve para indicar que la columna se almacena en una tabla con un nombre y una fecha de creacion.
+     */
     @Column(name = "brd_created_at", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
 
+
+    /**
+     * @Column(name = "brd_updated_at") sirve para indicar que la columna se almacena en una tabla con un nombre y una fecha de actualizacion.
+     */
     @Column(name = "brd_updated_at")
     private Instant updatedAt;
 
 
+    /**
+     * @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY) sirve para indicar que la clase BoardDomain tiene una relacion con la clase CardDomain.
+     * @JsonManagedReference sirve para indicar que la clase BoardDomain tiene una relacion con la clase CardDomain.
+     */
     @OneToMany(fetch = FetchType.LAZY, targetEntity = ColumnForBoardDomain.class, cascade = CascadeType.ALL, mappedBy = "board")
     @JsonManagedReference(value = "columnsForBoard")
     private List<ColumnForBoardDomain> columnsForBoard = new ArrayList<>();
 
 
+    /**
+     * @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY) sirve para indicar que la clase BoardDomain tiene una relacion con la clase CardDomain.
+     * @JsonManagedReference sirve para indicar que la clase BoardDomain tiene una relacion con la clase CardDomain.
+     */
     @OneToMany(fetch = FetchType.EAGER, targetEntity = TaskDomain.class, cascade = CascadeType.ALL, mappedBy = "boardTask")
     @JsonManagedReference(value = "taskForBoard")
     private List<TaskDomain> task = new ArrayList<>();

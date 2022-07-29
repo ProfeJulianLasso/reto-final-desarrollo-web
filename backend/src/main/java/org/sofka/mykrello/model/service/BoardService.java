@@ -12,25 +12,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Service //
 public class BoardService implements BoardServiceInterface {
 
     @Autowired
     private BoardRepository boardRepository;
-
     @Autowired
     private ColumnRepository columnRepository;
-
     @Autowired
     private ColumnForBoardRepository columnForBoardRepository;
 
 
+    /**
+     * La clase BoardRepository es la encargada de realizar
+     * las operaciones de CRUD de la entidad Board.
+     */
     @Override
     @Transactional(readOnly = true)
     public List<BoardDomain> getAll() {
         return boardRepository.findAll();
     }
 
+
+    /**
+     * La clase BoardRepository es la encargada de realizar
+     * las operaciones de CRUD de la entidad Board.
+     */
     @Override
     @Transactional(readOnly = true)
     public BoardDomain findById(Integer id) {
@@ -38,6 +45,11 @@ public class BoardService implements BoardServiceInterface {
         return board.isPresent() ? board.get() : null;
     }
 
+
+    /**
+     * La clase BoardRepository es la encargada de realizar
+     * las operaciones de CRUD de la entidad Board.
+     */
     @Override
     @Transactional
     public BoardDomain create(BoardDomain board) {
@@ -54,6 +66,11 @@ public class BoardService implements BoardServiceInterface {
         return newBoard;
     }
 
+
+    /**
+     * La clase BoardRepository es la encargada de realizar
+     * las operaciones de CRUD de la entidad Board.
+     */
     @Override
     @Transactional
     public BoardDomain update(Integer id, BoardDomain board) {
@@ -61,6 +78,11 @@ public class BoardService implements BoardServiceInterface {
         return boardRepository.save(board);
     }
 
+
+    /**
+     * La clase BoardRepository es la encargada de realizar
+     * las operaciones de CRUD de la entidad Board.
+     */
     @Override
     @Transactional
     public BoardDomain delete(Integer id) {
@@ -78,5 +100,4 @@ public class BoardService implements BoardServiceInterface {
         }
         return null;
     }
-
 }

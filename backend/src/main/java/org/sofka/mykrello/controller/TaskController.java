@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(value = "*")
 @RestController
+/**
+ * La clase TaskService es la encargada de realizar
+ * las operaciones de CRUD de la entidad Task.
+ */
 public class TaskController {
 
     @Autowired
