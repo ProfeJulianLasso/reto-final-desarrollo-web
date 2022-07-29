@@ -74,7 +74,7 @@ public class BoardService implements BoardServiceInterface {
         if (optionalBoard.isPresent()) {
             var board = optionalBoard.get();
             var columnsForBoard = board.getColumnsForBoard();
-            BorrarTareas (board.getTask());
+           // BorrarTareas (board.getTask());
             if (!columnsForBoard.isEmpty()) {
                 columnsForBoard.forEach((column) -> {
                     columnForBoardRepository.delete(column);
@@ -86,14 +86,21 @@ public class BoardService implements BoardServiceInterface {
         return null;
     }
 
-    public void BorrarTareas (List<TaskDomain> tareas){
-        tareas.forEach(tarea->{
-            Integer id = tarea.getId();
+  //  public void BorrarTareas (List<TaskDomain> tareas){
+
+
+
+
+
+
+
+      //  tareas.forEach(tarea->{
+        //    Integer id = tarea.getId();
             //var listLog  = logRepository.findByTask(id);
             /*listLog.forEach(log->{
                 logRepository.deleteById(log.getId());**/
-            taskRepository.deleteById(id);
-        });
+         //   taskRepository.deleteById(id);
+      //  });
     }
 
-}
+//}

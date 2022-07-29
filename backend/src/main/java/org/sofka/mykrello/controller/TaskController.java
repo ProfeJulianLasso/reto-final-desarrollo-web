@@ -18,6 +18,12 @@ public class TaskController {
 
     @Autowired
     private TaskService taskService;
+
+    @GetMapping(path = "/api/v1/taskbyidboard/{id}")
+    public ResponseEntity<MyResponseUtility> getTaskByIdBoard(@PathVariable(value = "id") Integer id) {
+        response.data = taskService.taskByIdBoard(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 /*
    @GetMapping(path = "/api/v1/task")
     public ResponseEntity<MyResponseUtility> index() {

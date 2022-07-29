@@ -22,9 +22,9 @@ public class TaskService implements TaskServiceInterface {
     private LogService logService;
 
     @Override
-    public List<TaskDomain> findAllTasksById(Integer idBoard) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<TaskDomain> taskByIdBoard(Integer idBoard) {
+        var tarea = taskRepository.findByIdBoard(idBoard);
+        return tarea;
     }
 
     @Override
@@ -57,7 +57,6 @@ public class TaskService implements TaskServiceInterface {
 
         try {
             var taskDomain = taskRepository.findById(id);
-            //System.out.println(taskDomain.get());
 
             taskRepository.deleteById(id);
             return taskDomain.get();

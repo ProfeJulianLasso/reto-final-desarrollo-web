@@ -62,7 +62,3 @@ public class TaskDomain implements Serializable {
     private Date updated;
 
 }
-
-
-
-
