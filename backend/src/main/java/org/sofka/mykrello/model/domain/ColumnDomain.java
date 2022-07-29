@@ -18,7 +18,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.Data;
 
 @Data
@@ -48,20 +47,24 @@ public class ColumnDomain implements Serializable {
     @Column(name = "clm_updated_at")
     private Instant updatedAt;
 
+
     @OneToMany(fetch = FetchType.LAZY, targetEntity = LogDomain.class, cascade = CascadeType.ALL, mappedBy = "previous")
     @JsonManagedReference(value = "logPrevious")
     @JsonIgnore
     private List<LogDomain> logPrevious = new ArrayList<>();
+
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = LogDomain.class, cascade = CascadeType.ALL, mappedBy = "current")
     @JsonManagedReference(value = "logCurrent")
     @JsonIgnore
     private List<LogDomain> logCurrent = new ArrayList<>();
 
+
     @OneToMany(fetch = FetchType.LAZY, targetEntity = ColumnForBoardDomain.class, cascade = CascadeType.ALL, mappedBy = "column")
     @JsonManagedReference(value = "columnForBoards")
     @JsonIgnore
     private List<ColumnForBoardDomain> columnForBoards = new ArrayList<>();
+
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = TaskDomain.class, cascade = CascadeType.ALL, mappedBy = "columnTask")
     //@JsonManagedReference(value = "taskForColumn")

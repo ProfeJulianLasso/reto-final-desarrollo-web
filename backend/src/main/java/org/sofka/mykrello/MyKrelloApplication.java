@@ -9,5 +9,5 @@ public class MyKrelloApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MyKrelloApplication.class, args);
 	}
-
+//Talelr final
 }
