@@ -19,11 +19,15 @@ public class ColumnOutDomain implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "clm_id")
     private Integer id;
 
-    @Column(name = "clm_name", length = 100)
+    @Column(name = "clm_name",  length = 100)
     private String name;
+
+
+
 }

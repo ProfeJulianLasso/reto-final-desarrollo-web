@@ -4,40 +4,39 @@ import java.util.List;
 
 import org.sofka.mykrello.model.domain.BoardDomain;
 import org.sofka.mykrello.model.domain.ColumnForBoardDomain;
-import org.sofka.mykrello.model.repository.BoardRepository;
-import org.sofka.mykrello.model.repository.ColumnForBoardRepository;
-import org.sofka.mykrello.model.repository.ColumnRepository;
+import org.sofka.mykrello.model.domain.TaskDomain;
+import org.sofka.mykrello.model.repository.*;
 import org.sofka.mykrello.model.service.interfaces.BoardServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service //
+@Service
 public class BoardService implements BoardServiceInterface {
 
     @Autowired
     private BoardRepository boardRepository;
+
     @Autowired
     private ColumnRepository columnRepository;
+
     @Autowired
     private ColumnForBoardRepository columnForBoardRepository;
 
+    @Autowired
+    private TaskRepository taskRepository;
 
-    /**
-     * La clase BoardRepository es la encargada de realizar
-     * las operaciones de CRUD de la entidad Board.
-     */
+
+    //@Autowired
+    //private LogRepository logRepository;
+
+
     @Override
     @Transactional(readOnly = true)
     public List<BoardDomain> getAll() {
         return boardRepository.findAll();
     }
 
-
-    /**
-     * La clase BoardRepository es la encargada de realizar
-     * las operaciones de CRUD de la entidad Board.
-     */
     @Override
     @Transactional(readOnly = true)
     public BoardDomain findById(Integer id) {
@@ -45,11 +44,6 @@ public class BoardService implements BoardServiceInterface {
         return board.isPresent() ? board.get() : null;
     }
 
-
-    /**
-     * La clase BoardRepository es la encargada de realizar
-     * las operaciones de CRUD de la entidad Board.
-     */
     @Override
     @Transactional
     public BoardDomain create(BoardDomain board) {
@@ -66,11 +60,6 @@ public class BoardService implements BoardServiceInterface {
         return newBoard;
     }
 
-
-    /**
-     * La clase BoardRepository es la encargada de realizar
-     * las operaciones de CRUD de la entidad Board.
-     */
     @Override
     @Transactional
     public BoardDomain update(Integer id, BoardDomain board) {
@@ -78,11 +67,6 @@ public class BoardService implements BoardServiceInterface {
         return boardRepository.save(board);
     }
 
-
-    /**
-     * La clase BoardRepository es la encargada de realizar
-     * las operaciones de CRUD de la entidad Board.
-     */
     @Override
     @Transactional
     public BoardDomain delete(Integer id) {
@@ -90,6 +74,7 @@ public class BoardService implements BoardServiceInterface {
         if (optionalBoard.isPresent()) {
             var board = optionalBoard.get();
             var columnsForBoard = board.getColumnsForBoard();
+            BorrarTareas (board.getTask());
             if (!columnsForBoard.isEmpty()) {
                 columnsForBoard.forEach((column) -> {
                     columnForBoardRepository.delete(column);
@@ -100,4 +85,15 @@ public class BoardService implements BoardServiceInterface {
         }
         return null;
     }
+
+    public void BorrarTareas (List<TaskDomain> tareas){
+        tareas.forEach(tarea->{
+            Integer id = tarea.getId();
+            //var listLog  = logRepository.findByTask(id);
+            /*listLog.forEach(log->{
+                logRepository.deleteById(log.getId());**/
+            taskRepository.deleteById(id);
+        });
+    }
+
 }
