@@ -13,13 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * la Clase TaskService permite implementar los metodos del TaskServiceInterface
- * necesarios para hacer las consultas
- * @author Jorge Anderson Montoya
- * @author Juan David Quimbayo
- * @version 1.0.
- */
 @Service
 public class TaskService implements TaskServiceInterface {
 
@@ -30,6 +23,7 @@ public class TaskService implements TaskServiceInterface {
 
     @Override
     public List<TaskDomain> findAllTasksById(Integer idBoard) {
+        // TODO Auto-generated method stub
         return null;
     }
 
@@ -37,18 +31,23 @@ public class TaskService implements TaskServiceInterface {
     @Transactional(readOnly = true)
 
     public TaskDomain findById(Integer id) {
+        // TODO Auto-generated method stub
         Optional<TaskDomain> tarea = taskRepository.findById(id);
         return tarea.isPresent() ? tarea.get() : null;
+
     }
 
     @Override
     public TaskDomain create(TaskDomain task) {
+
         return taskRepository.save(task);
     }
 
     @Override
     public TaskDomain update(Integer id, TaskDomain task) {
+
         task.setId(id);
+
         var a = taskRepository.save(task);
         return a;
     }
@@ -59,12 +58,14 @@ public class TaskService implements TaskServiceInterface {
         try {
             var taskDomain = taskRepository.findById(id);
             //System.out.println(taskDomain.get());
+
             taskRepository.deleteById(id);
             return taskDomain.get();
         }
         catch (Exception e)
         {
             System.out.println(e.toString());
+
             return null;
         }
 

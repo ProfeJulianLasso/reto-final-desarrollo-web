@@ -29,7 +29,7 @@ public class BoardController {
      * Metodo que retorna todos los registros de la tabla Board.
      * @return ResponseEntity<MyResponseUtility>
      */
-    @GetMapping(path = "/api/v1/boards")
+    @GetMapping(path = "/api/v1/board")
     public ResponseEntity<MyResponseUtility> index() {
         response.data = boardService.getAll();
         return new ResponseEntity<>(response, HttpStatus.OK);
