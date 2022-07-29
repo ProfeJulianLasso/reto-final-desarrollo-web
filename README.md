@@ -19,7 +19,7 @@
 
 <h3>🛠 Tech Stack</h3>
 
-- 🌐 &nbsp; Java Sprint Boot | MVC
+- ☕ &nbsp; Java Sprint Boot | MVC
 
 
 <h3>🌋 MODELO BASE DE DATOS</h3>
