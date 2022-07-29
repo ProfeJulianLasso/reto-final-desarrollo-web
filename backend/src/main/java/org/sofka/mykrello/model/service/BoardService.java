@@ -24,6 +24,7 @@ public class BoardService implements BoardServiceInterface {
     @Autowired
     private ColumnForBoardRepository columnForBoardRepository;
 
+
     @Override
     @Transactional(readOnly = true)
     public List<BoardDomain> getAll() {

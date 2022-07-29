@@ -31,11 +31,13 @@ public class BoardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+
     @GetMapping(path = "/api/v1/board/{id}")
     public ResponseEntity<MyResponseUtility> getBoardById(@PathVariable(value = "id") Integer id) {
         response.data = boardService.findById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
     @PostMapping(path = "/api/v1/board")
     public ResponseEntity<MyResponseUtility> create(@RequestBody BoardDomain board) {
@@ -45,7 +47,7 @@ public class BoardController {
 
     @PutMapping(path = "/api/v1/board/{id}")
     public ResponseEntity<MyResponseUtility> put(@PathVariable(value = "id") Integer id,
-            @RequestBody BoardDomain board) {
+                                                 @RequestBody BoardDomain board) {
         response.data = boardService.update(id, board);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -55,5 +57,4 @@ public class BoardController {
         response.data = boardService.delete(id);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-
 }
