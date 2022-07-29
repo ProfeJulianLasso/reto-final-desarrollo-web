@@ -1,0 +1,1 @@
+export const Url_Boards = "http://localhost:8080/board"

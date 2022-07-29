@@ -3,6 +3,7 @@ package org.sofka.mykrello.model.domain;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,24 +38,23 @@ public class ColumnForBoardDomain implements Serializable {
     @Column(name = "cfb_id")
     private Integer id;
 
+    @Column(name = "cfb_created_at", updatable = false)
+    private Instant createdAt = Instant.now();
+
+    @Column(name = "cfb_updated_at")
+    private Instant updatedAt;
+
+    // Relaciones
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = BoardDomain.class, optional = false, cascade = CascadeType.DETACH)
     @JoinColumn(name = "brd_id_board")
     @JsonBackReference(value = "columnsForBoard")
     private BoardDomain board;
 
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false, cascade = CascadeType.DETACH)
     @JoinColumn(name = "clm_id_column")
     @JsonBackReference(value = "columnForBoards")
     private ColumnDomain column;
 
-
-    @Column(name = "cfb_created_at", updatable = false)
-    private Instant createdAt = Instant.now();
-
-
-    @Column(name = "cfb_updated_at")
-    private Instant updatedAt;
 
 }

@@ -42,7 +42,6 @@ public class ColumnDomain implements Serializable {
 
     @Column(name = "clm_created_at", updatable = false)
     private Instant createdAt = Instant.now();
-
     @Column(name = "clm_updated_at")
     private Instant updatedAt;
 

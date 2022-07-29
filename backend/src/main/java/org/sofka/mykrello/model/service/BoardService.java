@@ -34,7 +34,7 @@ public class BoardService implements BoardServiceInterface {
     @Transactional(readOnly = true)
     public BoardDomain findById(Integer id) {
         var board = boardRepository.findById(id);
-        return board.isPresent() ? board.get() : null;
+        return board.orElse(null);
     }
 
     @Override
