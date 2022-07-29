@@ -1,0 +1,179 @@
+
+/*Variables locales*/
+:root{
+    --colorGreyBody: #787878;
+    --colorGreyTableContent: rgba(100, 100, 100, 0.3);
+    --colorGreyElementI: #878787;
+    --colorBlue: #92CBFC;
+    --colorRed: #FC9292;
+    --colorBlueHover: #68b7fc;
+    --colorRedHover: #f86969;
+}
+
+/*Contenedores globales*/
+
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+
+    background: url(../Html/src/Fondo.png);
+    background-color: var(--colorGreyBody);
+
+}
+
+#tableContent{
+    
+    width: 60%;
+    height: 35em;
+
+    margin: 2.6% 4.3%;
+    padding: 2em 13em 0 13em;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    border-radius: 3em;
+
+    background-color: var(--colorGreyTableContent);
+    backdrop-filter: blur(5px);
+
+    overflow-y: scroll;
+
+}#tableContent::-webkit-scrollbar {
+    display: none;  /* Ocultar scroll */
+}
+
+/*Elementos*/
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.addBoardBtn{
+    
+    width:3em;
+    height:3em;
+
+    border-radius: 100%;
+
+    background-color: white;
+    border:none;
+
+    margin-left: -12em;
+    margin-right: 7em;
+
+}.addBoardBtn:hover{
+    background-color: rgb(206, 206, 206);
+    cursor: pointer;
+}
+
+.divBoard{
+
+    margin-bottom: 2em;
+
+    width: 30%;
+    height: 10em;
+
+    border-radius: 1em;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+
+    background-color: var(--colorGreyElementI);
+
+}
+
+.divBoard input{
+
+    font-size: .8em;
+    margin: auto auto;
+    margin-top: 2em;
+
+    text-align: center;
+    font-weight: 500;
+    
+    border: none;
+    
+    grid-area: 1 / 1 / 2 / 3;
+
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+
+}.divBoard input:focus{
+    outline: none;
+    border-bottom: 1px solid white;
+}
+
+.verTablero{
+
+    width: 70%;
+    height: 2em;
+
+    margin: auto auto;
+
+    border-radius: 1em;
+    border: 2px solid white;
+
+    grid-area: 2 / 1 / 3 / 3;
+
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+
+}.verTablero:hover{
+    color: rgb(227, 227, 227);
+    background-color: rgba(255, 255, 255, 0.219);
+    cursor: pointer;
+}
+
+.editarTablero{
+
+    width: 85%;
+    height: 2em;
+
+    margin: auto auto;
+    margin-left: 1.2em;
+    margin-top: -0.01em;
+
+    border: none;
+    border-radius: 1em;
+
+    grid-area: 3 / 1 / 4 / 2;
+
+    background-color: var(--colorBlue);
+    color: white;
+
+}.editarTablero:hover{
+    background-color: var(--colorBlueHover);
+    cursor: pointer;
+}
+
+.eliminarTablero{
+
+    width: 85%;
+    height: 2em;
+
+    margin: auto auto;
+    margin-right: 1.2em;
+    margin-top: -0.01em;
+    
+    border: none;
+    border-radius: 1em;
+
+    grid-area: 3 / 2 / 4 / 3;
+
+    background-color: var(--colorRed);
+    color: white;
+
+}.eliminarTablero:hover{
+    background-color: var(--colorRedHover);
+    cursor: pointer;
+}

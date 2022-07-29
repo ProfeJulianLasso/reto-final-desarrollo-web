@@ -8,4 +8,4 @@ const root = document.getElementById("root")
 // Elementos html
 
 // Funciones
-getFunction(Url_Boards)
+
