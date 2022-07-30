@@ -2,41 +2,48 @@ package org.sofka.mykrello.model.service;
 
 import java.util.List;
 
-import org.sofka.mykrello.model.domain.BoardDomain;
-import org.sofka.mykrello.model.domain.ColumnForBoardDomain;
-import org.sofka.mykrello.model.domain.TaskDomain;
+import org.sofka.mykrello.controller.domain.BoardDomain;
+import org.sofka.mykrello.controller.domain.ColumnForBoardDomain;
 import org.sofka.mykrello.model.repository.*;
 import org.sofka.mykrello.model.service.interfaces.BoardServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Service//@Service es una anotación que indica que la clase es un servicio.
+
+/**
+ * La clase BoardService implementa el servicio de la entidad BoardDomain.
+ * BoardServiceInterface es una interfaz que contiene los métodos que se
+ */
 public class BoardService implements BoardServiceInterface {
 
-    @Autowired
+    @Autowired//@Autowired es una anotación que indica que la clase depende de otra clase.
     private BoardRepository boardRepository;
-
     @Autowired
     private ColumnRepository columnRepository;
-
     @Autowired
     private ColumnForBoardRepository columnForBoardRepository;
-
     @Autowired
     private TaskRepository taskRepository;
 
 
-    //@Autowired
-    //private LogRepository logRepository;
-
-
+    /**
+     * Método que permite obtener todos los registros de la tabla BoardDomain.
+     * @return List<BoardDomain>
+     */
     @Override
     @Transactional(readOnly = true)
     public List<BoardDomain> getAll() {
         return boardRepository.findAll();
     }
 
+
+    /**
+     * Método que permite obtener un registro de la tabla BoardDomain.
+     * @param id
+     * @return BoardDomain
+     */
     @Override
     @Transactional(readOnly = true)
     public BoardDomain findById(Integer id) {
@@ -44,6 +51,12 @@ public class BoardService implements BoardServiceInterface {
         return board.isPresent() ? board.get() : null;
     }
 
+
+    /**
+     * Método que permite crear un registro en la tabla BoardDomain.
+     * @param boardDomain
+     * @return BoardDomain
+     */
     @Override
     @Transactional
     public BoardDomain create(BoardDomain board) {
@@ -60,6 +73,12 @@ public class BoardService implements BoardServiceInterface {
         return newBoard;
     }
 
+
+    /**
+     * Método que permite actualizar un registro en la tabla BoardDomain.
+     * @param boardDomain
+     * @return BoardDomain
+     */
     @Override
     @Transactional
     public BoardDomain update(Integer id, BoardDomain board) {
@@ -67,6 +86,12 @@ public class BoardService implements BoardServiceInterface {
         return boardRepository.save(board);
     }
 
+
+    /**
+     * Método que permite eliminar un registro en la tabla BoardDomain.
+     * @param id
+     * @return BoardDomain
+     */
     @Override
     @Transactional
     public BoardDomain delete(Integer id) {
@@ -85,22 +110,4 @@ public class BoardService implements BoardServiceInterface {
         }
         return null;
     }
-
-  //  public void BorrarTareas (List<TaskDomain> tareas){
-
-
-
-
-
-
-
-      //  tareas.forEach(tarea->{
-        //    Integer id = tarea.getId();
-            //var listLog  = logRepository.findByTask(id);
-            /*listLog.forEach(log->{
-                logRepository.deleteById(log.getId());**/
-         //   taskRepository.deleteById(id);
-      //  });
-    }
-
-//}
+}

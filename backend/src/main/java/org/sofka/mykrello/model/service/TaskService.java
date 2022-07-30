@@ -1,19 +1,21 @@
 package org.sofka.mykrello.model.service;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
-import org.sofka.mykrello.model.domain.BoardDomain;
-import org.sofka.mykrello.model.domain.ColumnDomain;
-import org.sofka.mykrello.model.domain.TaskDomain;
+import org.sofka.mykrello.controller.domain.TaskDomain;
 import org.sofka.mykrello.model.repository.TaskRepository;
 import org.sofka.mykrello.model.service.interfaces.TaskServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Service //@Service indica que esta clase es un servicio y sirve para indicarle a Spring que es un servicio
+
+/**
+ * La clase TaskService implementa la interfaz TaskServiceInterface
+ * y es un servicio que se encarga de realizar las operaciones de la entidad TaskDomain.
+ */
 public class TaskService implements TaskServiceInterface {
 
     @Autowired
@@ -21,52 +23,75 @@ public class TaskService implements TaskServiceInterface {
     @Autowired
     private LogService logService;
 
-    @Override
+
+    /**
+     * TaskDomain es una entidad que se encarga de mapear la tabla krl_task
+     * taskByIdBoard es una funcion que se encarga de buscar una tarea por su idBoard
+     * taskRepository es una variable que se encarga de realizar las operaciones de la entidad TaskDomain.
+     * @return List<TaskDomain> retorna una lista de tareas
+     */
+    @Override//@Override indica que esta funcion es una sobreescritura de la funcion de la interfaz TaskServiceInterface
     public List<TaskDomain> taskByIdBoard(Integer idBoard) {
         var tarea = taskRepository.findByIdBoard(idBoard);
         return tarea;
     }
 
-    @Override
-    @Transactional(readOnly = true)
 
+    /**
+     * taskById es una funcion que se encarga de buscar una tarea por su id
+     * findById es una funcion que se encarga de buscar una tarea por su id
+     * taskRepository es una variable que se encarga de realizar las operaciones de la entidad TaskDomain.
+     * @return Optional<TaskDomain> retorna una tarea
+     */
+    @Override
+    @Transactional(readOnly = true) //@Transactional indica que esta funcion es una transaccion
     public TaskDomain findById(Integer id) {
-        // TODO Auto-generated method stub
         Optional<TaskDomain> tarea = taskRepository.findById(id);
         return tarea.isPresent() ? tarea.get() : null;
-
     }
 
+
+    /**
+     * TaskDomain es una entidad que se encarga de mapear la tabla krl_task
+     * create es una funcion que se encarga de crear una tarea
+     * taskRepository es una variable que se encarga de realizar las operaciones de la entidad TaskDomain.
+     * @return TaskDomain retorna una tarea creada
+     */
     @Override
     public TaskDomain create(TaskDomain task) {
-
         return taskRepository.save(task);
     }
 
+
+    /**
+     * TaskDomain es una entidad que se encarga de mapear la tabla krl_task
+     * update es una funcion que se encarga de actualizar una tarea
+     * taskRepository es una variable que se encarga de realizar las operaciones de la entidad TaskDomain.
+     * @return una tarea actualizada
+     */
     @Override
     public TaskDomain update(Integer id, TaskDomain task) {
-
         task.setId(id);
-
         var a = taskRepository.save(task);
         return a;
     }
 
+
+    /**
+     * TaskDomain es una entidad que se encarga de mapear la tabla krl_task
+     * delete es una funcion que se encarga de eliminar una tarea
+     * taskRepository es una variable que se encarga de realizar las operaciones de la entidad TaskDomain.
+     * @return una tarea eliminada
+     */
     @Override
     public TaskDomain delete(Integer id) {
-
         try {
             var taskDomain = taskRepository.findById(id);
-
             taskRepository.deleteById(id);
             return taskDomain.get();
-        }
-        catch (Exception e)
-        {
+        }catch (Exception e) {
             System.out.println(e.toString());
-
             return null;
         }
-
     }
 }
