@@ -4,6 +4,7 @@
     --colorGreyBody: #787878;
     --colorGreyTableContent: rgba(100, 100, 100, 0.3);
     --colorGreyElementI: #878787;
+    --colorGreyElementII: #A5A5A5;
     --colorBlue: #92CBFC;
     --colorRed: #FC9292;
     --colorBlueHover: #68b7fc;
@@ -47,7 +48,7 @@ body{
     display: none;  /* Ocultar scroll */
 }
 
-/*Elementos*/
+/*Elementos [Boards] */
 
 a{
     text-decoration: none;
@@ -176,4 +177,350 @@ a{
 }.eliminarTablero:hover{
     background-color: var(--colorRedHover);
     cursor: pointer;
+}
+
+/*Elementos [Board] */
+
+#tableContentColumns{
+
+    width: 82%;
+    height: 35em;
+
+    margin: 2% 4.3%;
+    padding: 1em 4em 2em 4em;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    border-radius: 3em;
+
+    background-color: var(--colorGreyTableContent);
+    backdrop-filter: blur(5px);
+
+
+}
+
+.column{
+
+    width: 30%;
+
+    height: 35em;
+
+    border-radius: 1em;
+
+    padding-bottom: 1em;
+
+    background-color: var(--colorGreyElementI);
+
+    overflow-y: scroll;
+
+}.column::-webkit-scrollbar {
+    display: none;  /* Ocultar scroll */
+}
+
+.titleBtn{
+    
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    text-align: center;
+    border: 1px solid white;
+    
+    font-size: 1em;
+
+    width: 70%;
+
+    padding-top: .25em;
+    padding-bottom: .25em;
+
+    margin: auto auto;
+    margin-top: 1.5em;
+    margin-left: 3em;
+    border-radius: 1em;
+
+}.titleBtn:hover{
+    background-color: rgba(255, 255, 255, 0.767);
+    color: rgb(206, 206, 206);
+    cursor: pointer;
+
+}
+.task{
+    
+    width: 70%;
+    height: 5.5em;
+
+    margin: auto auto;
+    margin-top: 1em;
+
+    background-color: var(--colorGreyElementII);
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;    
+
+    border-radius: 1em;
+
+}
+
+.task h5{
+
+    text-align: center;
+    
+    margin-top: 1.3em;
+
+    color: white;
+
+    grid-area: 1 / 1 / 2 / 3;
+
+}
+
+.editarTask{
+    grid-area: 2 / 1 / 3 / 2;
+    border: none;
+    width: 85%;
+    height: 2em;
+    border-radius: 1em;
+    color: white;
+    margin-left: .9em;
+    margin-top: -.8em;
+    background-color: var(--colorBlue);
+}.editarTask:hover{
+    background-color: var(--colorBlueHover);
+    cursor: pointer;
+}
+
+.borrarTask{
+    grid-area: 2 / 2 / 3 / 3;
+    border: none;
+    width: 85%;
+    height: 2em;
+    border-radius: 1em;
+    color: white;
+    margin-right: .9em;
+    margin-top: -.8em;
+    background-color: var(--colorRed);
+}.borrarTask:hover{
+    background-color: var(--colorRedHover);
+    cursor: pointer;
+}
+
+/*Modal*/
+
+.modalBtnSalir{
+    
+    width: 85%;
+    height: 3em;
+
+    margin: auto auto;
+    margin-right: 1.2em;
+    margin-top: -0.01em;
+    
+    border: none;
+    border-radius: 3em;
+
+    background-color: var(--colorRed);
+    color: white;
+
+    grid-area: 2 / 2 / 3 / 3;
+
+}.modalBtnSalir:hover{
+    background-color: var(--colorRedHover);
+    cursor: pointer
+}
+
+.modalTxtTitle{
+
+    border-radius: 2em;
+    border: none;
+    padding-left: 2em;
+    height: 3em;
+
+    grid-area: 2 / 3 / 3 / 7;
+
+}.modalTxtTitle:focus{
+    outline: none;
+}
+
+
+.modalTxtAreaDescrip{
+
+    border-radius: .5em;
+
+    padding-left: 1em;
+    padding-top: 1em;
+
+    resize: none;
+
+    grid-area: 3 / 2 / 7 / 5;
+
+}.modalTxtAreaDescrip:focus{
+    outline: none;
+}
+
+.modalDate{
+    
+    text-align: center;
+    border-radius: 2em;
+    border: none;
+    height: 3em;
+
+    grid-area: 3 / 5 / 4 / 7;
+
+}.modalDate:focus{
+    outline: none;
+}.modalDate::-webkit-calendar-picker-indicator{
+    margin-top: .1em;
+    margin-right: 1em;
+}
+
+.rdBtn1{
+
+    color: white;
+    margin-top: 2em;
+
+    grid-area: 4 / 5 / 5 / 6;
+
+}
+
+.rdBtn2{
+
+    color: white;
+
+    grid-area: 5 / 5 / 6 / 6;
+
+    
+
+}
+
+.rdBtn3{
+
+    color: white;
+    margin-top: -2em;
+
+    grid-area: 6 / 5 / 7 / 6;
+
+
+}
+
+.modalBtnActualizar{
+
+    width: 100%;
+    height: 3em;
+
+    margin: auto auto;
+    margin-right: 1.2em;
+    margin-top: 2em;
+    
+    border: none;
+    border-radius: 3em;
+
+    background-color: var(--colorBlue);
+    color: white;
+
+    grid-area: 4 / 6 / 5 / 7;
+
+}.modalBtnActualizar:hover{
+    background-color: var(--colorBlueHover);
+    cursor: pointer
+}
+
+.modalBtnDevolver{
+
+    width: 100%;
+    height: 3em;
+
+    margin: auto auto;
+    margin-right: 1.2em;
+    margin-top: 2em;
+    
+    border: none;
+    border-radius: 3em;
+
+    background-color: var(--colorRed);
+    color: white;
+
+    grid-area: 5 / 6 / 6 / 7;
+
+}.modalBtnDevolver:hover{
+    background-color: var(--colorRedHover);
+    cursor: pointer
+}
+
+.modalTxtAreaHistory{
+
+    border-radius: .5em;
+
+    padding-left: 1em;
+    padding-top: 1em;
+
+    resize: none;
+
+    grid-area: 7 / 2 / 10 / 7;
+
+}.modalTxtAreaHistory:focus{
+    outline: none;
+}
+
+.ventana{
+    position: relative;
+}
+
+.modal{
+
+    position:fixed;
+    top: -1em;
+    width: 35em;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity:0;
+    z-index: 1;
+    pointer-events:none;
+    transition: all 0.2s;
+
+    width: 100%;
+    height: 35em;
+
+    margin: 2% 4.3%;
+    margin-top: .8em;
+    margin-right: 1em;
+    padding: 1em 4em 2em 4em;
+    
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+
+    border-radius: 3em;
+
+}
+  
+#IrVentanaFlotante:target{
+    opacity:1;
+    pointer-events:auto;
+}
+
+#tableContentModal{
+
+    width: 56em;
+    height: 35em;
+
+    margin: 2% 4.3%;
+    padding: 1em 4em 2em 4em;
+    
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+
+    border-radius: 3em;
+
+    background-color: rgba(112, 112, 112, 0.474);
+    backdrop-filter: blur(10px);
+
 }

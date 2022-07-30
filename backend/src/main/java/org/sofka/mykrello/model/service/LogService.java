@@ -20,4 +20,6 @@ public class LogService implements LogServiceInterface {
         // TODO Auto-generated method stub
         return null;
     }
+
+
 }

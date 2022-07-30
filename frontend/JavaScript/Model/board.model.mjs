@@ -1,18 +1,21 @@
 'use strict';
 
 export class BoardModel {
+
     #privateID;
     #privateNombre;
     #privateCreado;
     #privateActualizado;
 
     constructor(data) {
-        if (data) {
+
+        if (data != null) {
             this.#privateID = data.id;
             this.#privateNombre = data.name;
             this.#privateCreado = data.createdAt;
             this.#privateActualizado = data.updatedAt;
         }
+
     }
 
     get ID() {
@@ -56,5 +59,4 @@ export class BoardModel {
         };
     }
 
-   
 }

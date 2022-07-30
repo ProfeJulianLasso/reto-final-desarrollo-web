@@ -1,12 +1,11 @@
 // Imports
-import { getFunction } from "./Model/GetBoards.mjs"
-import { Url_Boards } from "./config.mjs"
+import { BoardController } from "./Controller/Board_Controller.mjs"
 
 // Contenedores html
 const root = document.getElementById("root")
 
-// Elementos html
-
 // Funciones
+let launch = new BoardController()
+launch.generateViews()
 
-getFunction(Url_Boards).then(response => console.log(response))
+
