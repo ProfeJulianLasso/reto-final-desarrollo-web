@@ -9,3 +9,4 @@ const root = document.getElementById("root")
 
 // Funciones
 
+getFunction(Url_Boards).then(response => console.log(response))
