@@ -16,7 +16,6 @@ export class TableroDentroView {
      * @param {} tableros 
      */
     init(columnas,tasks,idTablero) {
-       
         const description = new TableroDentroController();
 
         let nombreColumnas = ["Por realizar","En progreso","Terminado"];

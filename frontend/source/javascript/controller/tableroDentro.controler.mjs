@@ -24,7 +24,7 @@ export class TableroDentroController {
         
         const servicio = new TablerosService(this.#privateApiyURL);
         const tableros = await servicio.getColumnNames();
-        var idTablero = 1;
+        var idTablero = 2;
         const tasks = await servicio.getTaskFoBoard(idTablero);
         this.#privateView.init(tableros,tasks,idTablero);
 
