@@ -1,0 +1,61 @@
+
+
+body{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: black;
+
+}
+
+div{
+    width: 30%;
+    height: auto;
+    padding: 40px 5%;
+    background-color: aquamarine;
+    border-radius: 8px;
+    margin: 20px 20px;
+    color: black;
+}
+
+input{
+    width: 160px!important;
+    margin: 3px;
+}
+img{
+    width: 100%;
+}
+/*
+button{
+    width: 40px;
+    height: 20px;
+    border-radius: 0 9px;
+}*/
+
+.as{
+    height:1000%!important;
+    width: 30%!important;
+    background-color: white;
+}
+
+.task{
+
+    width: 100%;
+    height: auto;
+    padding: 40px 5%;
+    background-color: aquamarine;
+    border-radius: 8px;
+    margin-left: 0px!important;
+    margin-top: 10px!important;
+    color: black;
+
+}
+
+.divBotones{
+    height: auto;
+    width: max-content;
+    margin: 0px!important;
+    padding: 0px!important;
+
+
+}

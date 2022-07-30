@@ -1,0 +1,32 @@
+
+body{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+div{
+    width: 20%;
+    height: auto;
+    padding: 40px 5%;
+    background-color: aquamarine;
+    border-radius: 8px;
+    margin: 20px 20px;
+    color: azure;
+  
+}
+
+img{
+    width: 100%;
+}
+
+button{
+    width: 40px;
+    height: 20px;
+    border-radius: 0 9px;
+}
