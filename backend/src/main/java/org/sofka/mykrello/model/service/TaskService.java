@@ -20,6 +20,8 @@ public class TaskService implements TaskServiceInterface {
 
     @Autowired
     private TaskRepository taskRepository;
+@Autowired
+     private LogRepository logRepository;
     @Autowired
     private LogService logService;
 
@@ -59,7 +61,21 @@ public class TaskService implements TaskServiceInterface {
      */
     @Override
     public TaskDomain create(TaskDomain task) {
-        return taskRepository.save(task);
+        var a = taskRepository.save(task);
+
+        Integer idTask = a.getId();
+        Integer idColumnTask = a.getIdColumn();
+
+        LogDomain logdomain = new LogDomain();
+
+        logdomain.setIdTask(idTask.toString());
+        logdomain.setIdCurrent(idColumnTask.toString());
+        logdomain.setIdPrevious(idColumnTask.toString());
+        logdomain.setCreatedAt(Instant.now());
+
+        logRepository.save(logdomain);
+
+       return a;
     }
 
 
