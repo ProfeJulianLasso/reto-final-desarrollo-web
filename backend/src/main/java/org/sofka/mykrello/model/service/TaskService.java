@@ -1,9 +1,12 @@
 package org.sofka.mykrello.model.service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
+import org.sofka.mykrello.controller.domain.LogDomain;
 import org.sofka.mykrello.controller.domain.TaskDomain;
+import org.sofka.mykrello.model.repository.LogRepository;
 import org.sofka.mykrello.model.repository.TaskRepository;
 import org.sofka.mykrello.model.service.interfaces.TaskServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
