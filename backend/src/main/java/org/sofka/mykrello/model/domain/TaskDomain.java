@@ -54,7 +54,7 @@ public class TaskDomain implements Serializable {
     private Instant updatedT;
 
     @JsonManagedReference(value = "log-task")
-    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY, targetEntity = LogDomain.class, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY, targetEntity = LogDomain.class, orphanRemoval = true)
     private List<LogDomain> logs = new ArrayList<>();
 
     // Relaciones

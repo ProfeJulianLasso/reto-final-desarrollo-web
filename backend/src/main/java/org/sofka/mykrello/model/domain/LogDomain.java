@@ -33,12 +33,12 @@ public class LogDomain implements Serializable {
     @Column(name = "tsk_id_task")
     private Integer taskId;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false)
     @JoinColumn(name = "clm_id_previous", updatable = false)
     @JsonBackReference(value = "logPrevious")
     private ColumnDomain previous;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false)
     @JoinColumn(name = "clm_id_current", updatable = false)
     @JsonBackReference(value = "logCurrent")
     private ColumnDomain current;
@@ -50,13 +50,6 @@ public class LogDomain implements Serializable {
     @JsonBackReference(value = "log-task")
     @ManyToOne(fetch = FetchType.LAZY)
     private TaskDomain task;
-
-    /**
-     * LogDomain es mi constructor por defecto.
-     * @param taskId SIRVE PARA HACER UN JOIN CON LA TABLA TASK
-     * @param previous
-     * @param current
-     */
 
     public LogDomain(Integer taskId, ColumnDomain previous, ColumnDomain current) {
         this.taskId = taskId;
