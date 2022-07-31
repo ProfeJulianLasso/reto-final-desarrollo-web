@@ -21,6 +21,7 @@ public class LogService implements LogServiceInterface {
     /**
      * findById indica que el método busca un log por su id.
      * logRepository indica que el método busca un log en la base de datos.
+     *
      * @param id indica el id del log que se busca.
      * @return el log encontrado por su id.
      */
@@ -33,6 +34,7 @@ public class LogService implements LogServiceInterface {
     /**
      * create indica que el método crea un log.
      * logRepository indica que el método crea un log en la base de datos.
+     *
      * @param log el log a crear.
      * @return el log creado.
      */
@@ -41,15 +43,4 @@ public class LogService implements LogServiceInterface {
         var logDomain = logRepository.save(log);
         return logDomain;
     }
-
-    /**/
-
-    @Override
-    public LogDomain delete(Integer id) {
-        var logDomain = logRepository.findById(id);
-        logRepository.delete(logDomain.get());
-        return logDomain.get();
-    }
-
-    /**/
 }

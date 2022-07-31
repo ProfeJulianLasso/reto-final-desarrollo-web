@@ -46,13 +46,13 @@ public class LogController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }*/
 
-    /**/
+    /*
    @DeleteMapping(path = "/api/v1/log/{id}")
     public ResponseEntity<MyResponseUtility> delete(@PathVariable(value = "id") Integer id) {
         response.data = logService.delete(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    /**/
+    */
 
     /* @GetMapping(path = "/api/v1/log")
     public ResponseEntity<MyResponseUtility> index() {

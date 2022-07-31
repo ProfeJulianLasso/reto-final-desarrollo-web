@@ -10,6 +10,4 @@ public interface LogServiceInterface {
     public  LogDomain findById(Integer id);
     public LogDomain create(LogDomain log);
 
-
-    public LogDomain delete(Integer id);
 }
