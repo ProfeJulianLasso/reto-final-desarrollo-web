@@ -77,7 +77,7 @@ public class BoardDomain implements Serializable {
      * @OneToMany es una anotación que indica que una tabla tiene una relación con otra tabla.
      * @JsonBackReference es una anotación que indica que no se debe serializar el objeto.
      */
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = ColumnForBoardDomain.class, cascade = CascadeType.ALL, mappedBy = "board")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = ColumnForBoardDomain.class, cascade = CascadeType.REMOVE, mappedBy = "board" )
     //@JsonIgnore
     @JsonManagedReference(value = "columnsForBoard")
     private List<ColumnForBoardDomain> columnsForBoard = new ArrayList<>();
@@ -87,7 +87,7 @@ public class BoardDomain implements Serializable {
      * @OneToMany es una anotación que indica que una tabla tiene una relación con otra tabla.
      * @JsonBackReference es una anotación que indica que no se debe serializar el objeto.
      */
-    @OneToMany(fetch = FetchType.EAGER /*LAZY*/, targetEntity = TaskDomain.class, cascade = CascadeType.ALL, mappedBy = "boardTask")
+    @OneToMany(fetch = FetchType.EAGER /*LAZY*/, targetEntity = TaskDomain.class, cascade = CascadeType.REMOVE, mappedBy = "boardTask")
     //@JsonIgnore
     //@JsonManagedReference(value = "taskForBoard")
     @JsonBackReference(value = "taskForBoard")

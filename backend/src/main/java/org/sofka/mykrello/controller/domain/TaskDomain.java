@@ -2,10 +2,13 @@ package org.sofka.mykrello.controller.domain;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
@@ -40,18 +43,22 @@ public class TaskDomain implements Serializable {
      * @JsonBackReference indica que la propiedad no se serializa.
      * @JsonIgnore indica que la propiedad no se serializa.
      */
-    @ManyToOne(targetEntity = ColumnDomain.class, optional = false, cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = ColumnDomain.class, optional = false ,/*cascade = CascadeType.DETACH,*/ fetch = FetchType.EAGER)
     @JsonManagedReference(value = "taskForColumn")
     @JsonIgnore
     @JoinColumn( name = "clm_id_column",insertable =false, updatable=false ) //@JoinColumn indica la columna de la tabla a la que se relaciona la propiedad la llave primaria de la clase.
     private ColumnDomain columnTask; // tipo de clase dentro de springboot
 
 
-    @ManyToOne(targetEntity = BoardDomain.class, optional = false, cascade = CascadeType.DETACH,fetch = FetchType.EAGER)
+   @ManyToOne(targetEntity = BoardDomain.class, optional = false, cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JsonManagedReference(value = "taskForBoard")
     @JsonIgnore
     @JoinColumn( name = "brd_id_board", insertable =false, updatable=false)
     private BoardDomain boardTask;
+
+    @OneToMany(fetch = FetchType.EAGER /*LAZY*/, targetEntity = LogDomain.class, cascade = CascadeType.REMOVE, mappedBy = "taskLog")
+    @JsonBackReference(value ="logForTask")
+    private List<LogDomain> log = new ArrayList<>();
 
 
     /**

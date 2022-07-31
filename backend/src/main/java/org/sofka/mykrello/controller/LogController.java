@@ -18,6 +18,12 @@ public class LogController {
     private LogService logService;
 
 
+    @GetMapping(path = "/api/v1/logByIdTask/{id}")
+    public ResponseEntity<MyResponseUtility>getLogByIdTask(@PathVariable(value = "id") String id){
+        response.data = logService.logByIdTask(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     /**
      * Metodo que permite obtener todos los logs de la base de datos
      * @return ResponseEntity<LogDomain>
@@ -46,11 +52,12 @@ public class LogController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }*/
 
-   /* @DeleteMapping(path = "/api/v1/log/{id}")
+   @DeleteMapping(path = "/api/v1/log/{id}")
     public ResponseEntity<MyResponseUtility> delete(@PathVariable(value = "id") Integer id) {
-        response.data = logService.delete(id);
+       response.data = logService.delete(id);
+
         return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }*/
+    }
 
     /* @GetMapping(path = "/api/v1/log")
     public ResponseEntity<MyResponseUtility> index() {

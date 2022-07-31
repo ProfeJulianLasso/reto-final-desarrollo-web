@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 @Data //@Data es una anotación que permite generar automáticamente los getters y setters de los atributos de la clase.
@@ -48,16 +50,22 @@ public class LogDomain implements Serializable {
      * @JsonBackReference indica que la clase no se serializará.
      * value="logPrevious" indica que la clase se serializará como logPrevious.
      */
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false/*, cascade = CascadeType.REMOVE *//*,cascade = CascadeType.REMOVE*/)
     @JoinColumn(name = "clm_id_previous", nullable = false, updatable = false, insertable = false)
     @JsonBackReference(value = "logPrevious")
     private ColumnDomain previous;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false/*,cascade = CascadeType.REMOVE*/)
     @JoinColumn(name = "clm_id_current", nullable = false, updatable = false, insertable = false)
     @JsonBackReference(value = "logCurrent")
     private ColumnDomain current;
+
+    @ManyToOne(targetEntity = TaskDomain.class, optional = false, /*cascade = CascadeType.REMOVE,*/ fetch = FetchType.EAGER)
+    @JsonManagedReference(value = "logForTask")
+    @JsonIgnore
+    @JoinColumn( name = "tsk_id_task", insertable =false, updatable=false)
+    private TaskDomain taskLog;
 
 
     /**

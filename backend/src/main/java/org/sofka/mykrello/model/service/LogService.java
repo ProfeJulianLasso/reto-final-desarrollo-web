@@ -6,6 +6,8 @@ import org.sofka.mykrello.model.service.interfaces.LogServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service //@Service indica que esta clase es un servicio
 
 /**
@@ -16,6 +18,12 @@ public class LogService implements LogServiceInterface {
 
     @Autowired
     private LogRepository logRepository;
+
+
+    public List<LogDomain> logByIdTask(String idTask){
+        var log = logRepository.findByIdLogbytask(idTask);
+        return log;
+    }
 
 
     /**
@@ -41,4 +49,14 @@ public class LogService implements LogServiceInterface {
         var logDomain = logRepository.save(log);
         return logDomain;
     }
+
+    @Override
+    public LogDomain delete(Integer id) {
+        var logDomain = logRepository.findById(id);
+        logRepository.delete(logDomain.get());
+
+
+        return logDomain.get();
+    }
+
 }

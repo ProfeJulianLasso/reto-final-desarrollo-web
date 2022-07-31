@@ -83,7 +83,7 @@ public class ColumnDomain implements Serializable {
     /**
      * @Column es una anotación que indica el nombre de la columna en la base de datos.
      */
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = LogDomain.class, cascade = CascadeType.ALL, mappedBy = "previous")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = LogDomain.class, cascade = CascadeType.REMOVE, mappedBy = "previous")
     @JsonManagedReference(value = "logPrevious")
     @JsonIgnore
     private List<LogDomain> logPrevious = new ArrayList<>();
@@ -92,7 +92,7 @@ public class ColumnDomain implements Serializable {
     /**
      * @Column es una anotación que indica el nombre de la columna en la base de datos.
      */
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = LogDomain.class, cascade = CascadeType.ALL, mappedBy = "current")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = LogDomain.class, /*cascade = CascadeType.REMOVE,*/ mappedBy = "current")
     @JsonManagedReference(value = "logCurrent")
     @JsonIgnore
     private List<LogDomain> logCurrent = new ArrayList<>();
@@ -101,7 +101,7 @@ public class ColumnDomain implements Serializable {
     /**
      * @Column es una anotación que indica el nombre de la columna en la base de datos.
      */
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = ColumnForBoardDomain.class, cascade = CascadeType.ALL, mappedBy = "column")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = ColumnForBoardDomain.class, mappedBy = "column")
     @JsonManagedReference(value = "columnForBoards")
     @JsonIgnore
     private List<ColumnForBoardDomain> columnForBoards = new ArrayList<>();
@@ -110,7 +110,7 @@ public class ColumnDomain implements Serializable {
     /**
      * @Column es una anotación que indica el nombre de la columna en la base de datos.
      */
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = TaskDomain.class, cascade = CascadeType.ALL, mappedBy = "columnTask")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = TaskDomain.class /*,cascade = CascadeType.REMOVE*/, mappedBy = "columnTask")
     //@JsonManagedReference(value = "taskForColumn")
     @JsonBackReference(value = "taskForColumn")
     //@JsonIgnore

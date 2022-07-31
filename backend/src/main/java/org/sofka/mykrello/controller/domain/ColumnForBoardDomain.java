@@ -60,13 +60,13 @@ public class ColumnForBoardDomain implements Serializable {
      * @JoinColumn es una anotación que indica el nombre de la columna en la tabla de referencia.
      * @JsonBackReference es una anotación que indica que la clase no debe serializarse.
      */
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = BoardDomain.class, optional = false, cascade = CascadeType.DETACH)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = BoardDomain.class, optional = false ,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "brd_id_board", nullable = false)
     @JsonBackReference(value = "columnsForBoard")
     private BoardDomain board;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false, cascade = CascadeType.DETACH)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false /*,cascade = CascadeType.*/)
     @JoinColumn(name = "clm_id_column", nullable = false)
     @JsonBackReference(value = "columnForBoards")
     private ColumnDomain column;
