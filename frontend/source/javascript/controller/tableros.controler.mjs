@@ -29,36 +29,46 @@ export class TablerosController {
     }  
     async create(text){
         
-        if(text == "")
-        {
-            alert("Se debe ingresar un nombre al tablero a crear");
-        }
-        else
-        {
-            
+        if(text == ""){
+            Swal.fire(
+                'Error',
+                'Ingresar un nombre al tablero que desea crear',
+                'error'
+            )
+        }else{
             const servicio = new TablerosService(this.#privateApiyURL);
-            let nombre = {"name":text,
-            "createdAt": new Date().toISOString()};
+            let nombre = { "name":text,"createdAt": new Date().toISOString() };
             await servicio.create(nombre);
+
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                text: 'Tablero creado correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.reload()
+            })
             //const tableros = await servicio.getTableros();
             //this.#privateView.init(tableros);
-            alert("Tablero Creada correctamente");
+            //alert("Tablero Creado correctamente");
         }
     }
+
     async delete(id){
         const servicio = new TablerosService(this.#privateApiyURL);
         await servicio.delete(id);
-        alert("Tablero Eliminado correctamente");
-
+        
     }
+
     async editar(text,id){debugger;
-        if(text == "")
-        {
-            alert("Se debe ingresar un nombre al tablero a editar");
-        }
-        else
-        {
-            
+        if(text == ""){
+            Swal.fire(
+                'Error',
+                'Ingresar un nombre nuevo al tablero que desea editar',
+                'error'
+            )
+        }else{
             const servicio = new TablerosService(this.#privateApiyURL);
             let nombre = {"name":text,
             //"createdAt": new Date().toISOString(),
@@ -66,7 +76,16 @@ export class TablerosController {
             await servicio.editar(nombre,id);
             //const tableros = await servicio.getTableros();
             //this.#privateView.init(tableros);
-            alert("Tablero Editado correctamente");
+
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                text: 'Tablero Editado correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.reload()
+            })
         }
     }
 }

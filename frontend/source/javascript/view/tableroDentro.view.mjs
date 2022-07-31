@@ -16,33 +16,32 @@ export class TableroDentroView {
      * @param {} tableros 
      */
     init(columnas,tasks,idTablero) {
-       
         const description = new TableroDentroController();
 
         let nombreColumnas = ["Por realizar","En progreso","Terminado"];
         var numeroColumnas = columnas.length;
+
         columnas.forEach((element)=>{
 
-            const div = document.createElement("div");
-            div.classList.add("as");
+            const div = document.createElement("section");
+            div.classList.add("columnasTask");
 
             div.id = element.Id;//element.Name.replace(' ','');
 
-            const titulo = document.createElement("h1");
+            const titulo = document.createElement("h3");
             titulo.textContent =  element.Name;
 
-            
 
             const inputNombre = document.createElement("input");
-            inputNombre.placeholder = "Nombre de la tarea";
+            inputNombre.placeholder = "Nombre de la tarea:";
             inputNombre.id = "nombre_"+element.Name;
 
             const inputDescripcion = document.createElement("input");
-            inputDescripcion.placeholder = "Descripcion tarea";
+            inputDescripcion.placeholder = "Descripcion tarea:";
             inputDescripcion.id = "descripcion"+element.Name;
 
             const buttonCrearTarea = this.#privateCreateButton();
-            buttonCrearTarea.classList.add('btn', 'btn-primary');
+            buttonCrearTarea.classList.add('btn', 'btn-primary', 'd-grid', 'gap-2', 'col-9', 'mx-auto');
             buttonCrearTarea.textContent = 'Crear tarea';
 
             buttonCrearTarea.id = "btn"+element.Name.replace(' ','');
@@ -53,10 +52,7 @@ export class TableroDentroView {
                 
                 description.create(nombre,descripcion,idTablero,idColumna);
             });
-            
-
             div.append(titulo,inputNombre,inputDescripcion,buttonCrearTarea);
-
             this.#privateBody.append(div);
         });
 
@@ -64,114 +60,102 @@ export class TableroDentroView {
             var idColumn = task.Image;
             var h = document.getElementById(idColumn);
 
-            const pruebaDiv = document.createElement("div");
+            const pruebaDiv = document.createElement("section");
             pruebaDiv.id = "tarea"+task.Id;
-            pruebaDiv.classList.add("task");
-     
+            pruebaDiv.classList.add('task');
             
+            
+            /* Contenido de la Crad */
+            const p1 = document.createElement("h5");
+            p1.classList.add("card-title");
+            p1.textContent = "Tarea: "+task.Name; 
+    
 
-             const p1 = document.createElement("p");
-             p1.textContent = "Titulo: "+task.Name; 
-     
-             const p2 = document.createElement("p");
-             p2.textContent = "Descripcion: "+task.DescripcionTarea; 
-     
-             const p3 = document.createElement("p");
-             p3.textContent = "Fecha de creacion: "+task.FechaCreacionTarea; 
-     
-     
-     
-             pruebaDiv.append(p1,p2,p3);
-     
-             
+            const p2 = document.createElement("h6");
+            p2.classList.add("card-text");
+            p2.textContent = "Descripcion: "+task.DescripcionTarea; 
+    
 
-             const divBotones = document.createElement("div");
-             divBotones.classList.add("divBotones");
-             
-             const buttonAbrir = this.#privateCreateButton();
-             buttonAbrir.classList.add('btn', 'btn-primary');
-             buttonAbrir.textContent = 'Abrir';
-     
-             buttonAbrir.addEventListener("click",() => location.href = Config.FrontendURL+"/tableroDentro.html?id="+tablero.Id);
-                 
-     
-             const buttonEliminar = this.#privateCreateButton();
-             buttonEliminar.classList.add('btn', 'btn-primary');
-             buttonEliminar.textContent = 'Eliminar';
-     
-             buttonEliminar.addEventListener("click",() => {description.delete(task.Id);});
-             
-             debugger;
-             if(idColumn-1 == 0)
-             {
+            const p3 = document.createElement("p");
+            p3.classList.add("card-text");
+            p3.textContent = "Fecha de creacion: "+task.FechaCreacionTarea; 
+        
+            pruebaDiv.append(p1,p2,p3);
+    
+
+            /* Brupo de botones */
+            const divBotones = document.createElement("div");
+            divBotones.classList.add("divBotones","btn-group", "btn-group-md");
+
+            
+            /* Boton Abrir Tareas*/
+            const buttonAbrir = this.#privateCreateButton();
+            buttonAbrir.classList.add('btn', 'btn-success');
+            buttonAbrir.textContent = 'Abrir';
+            buttonAbrir.addEventListener("click",() => location.href = Config.FrontendURL+"/tableroDentro.html?id="+tablero.Id);
+    
+            /* Boton Eliminar Tarea */
+            const buttonEliminar = this.#privateCreateButton();
+            buttonEliminar.classList.add('btn', 'btn-danger');
+            buttonEliminar.innerHTML = `<i class="bi bi-trash"></i>`;
+            buttonEliminar.addEventListener("click",() => {description.delete(task.Id);});
+            
+            //debugger;
+            if(idColumn-1 == 0)
+            {
                 const buttonMoverDerecha = this.#privateCreateButton();
                 buttonMoverDerecha.classList.add('btn', 'btn-primary');
-                buttonMoverDerecha.textContent = '-->';
+                buttonMoverDerecha.innerHTML = `<i class="bi bi-arrow-return-right"></i>`;
 
                 buttonMoverDerecha.addEventListener("click",() => {
-
                     var name=task.Name;
                     var descripcion = task.DescripcionTarea;
                     var fechaCreacion = task.FechaCreacionTarea;
                     description.mover(idColumn+1,idTablero,name,descripcion,fechaCreacion,task.Id);
                 
                 });
-
-
                 divBotones.append(buttonAbrir,buttonEliminar,buttonMoverDerecha);
-             }
-             
-             else if(idColumn == numeroColumnas){
+            }
+            else if(idColumn == numeroColumnas){
                 const buttonMoverIzquierda = this.#privateCreateButton();
                 buttonMoverIzquierda.classList.add('btn', 'btn-primary');
-                buttonMoverIzquierda.textContent = '<--';
-
+                buttonMoverIzquierda.innerHTML = `<i class="bi bi-arrow-return-left"></i>`;
 
                 buttonMoverIzquierda.addEventListener("click",() => {
-
                     var name=task.Name;
                     var descripcion = task.DescripcionTarea;
                     var fechaCreacion = task.FechaCreacionTarea;
                     description.mover(idColumn-1,idTablero,name,descripcion,fechaCreacion,task.Id);
-                
                 });
-
-
                 divBotones.append(buttonMoverIzquierda,buttonAbrir,buttonEliminar);
-             }
-             else{
+            }
+            else{
                 const buttonMoverDerecha = this.#privateCreateButton();
                 buttonMoverDerecha.classList.add('btn', 'btn-primary');
-                buttonMoverDerecha.textContent = '-->';
+                buttonMoverDerecha.innerHTML = `<i class="bi bi-arrow-return-right"></i>`;;
 
                 const buttonMoverIzquierda = this.#privateCreateButton();
                 buttonMoverIzquierda.classList.add('btn', 'btn-primary');
-                buttonMoverIzquierda.textContent = '<--';
+                buttonMoverIzquierda.innerHTML = `<i class="bi bi-arrow-return-left"></i>`;
 
                 buttonMoverDerecha.addEventListener("click",() => {
-
                     var name=task.Name;
                     var descripcion = task.DescripcionTarea;
                     var fechaCreacion = task.FechaCreacionTarea;
                     description.mover(idColumn+1,idTablero,name,descripcion,fechaCreacion,task.Id);
-                
                 });
 
                 buttonMoverIzquierda.addEventListener("click",() => {
-
                     var name=task.Name;
                     var descripcion = task.DescripcionTarea;
                     var fechaCreacion = task.FechaCreacionTarea;
                     description.mover(idColumn-1,idTablero,name,descripcion,fechaCreacion,task.Id);
-                
                 });
-
                 divBotones.append(buttonMoverIzquierda,buttonAbrir,buttonEliminar,buttonMoverDerecha);
-             }
+            }
 
-             
-             pruebaDiv.append(divBotones);
-     
+            //container.append(div)
+            pruebaDiv.append(divBotones);
             h.append(pruebaDiv);
         });             
     }
@@ -187,7 +171,6 @@ export class TableroDentroView {
         return document.createElement('img');
     }
 
-    
     #privateCreateTitle() {
         return document.createElement('h1');
     }   

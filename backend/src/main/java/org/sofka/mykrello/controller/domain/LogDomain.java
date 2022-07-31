@@ -68,6 +68,17 @@ public class LogDomain implements Serializable {
     private TaskDomain taskLog;
 
 
+//    @ManyToOne(fetch = FetchType.LAZY, targetEntity = TaskDomain.class, optional = false, cascade = CascadeType.DETACH)
+//    @JoinColumn(name = "tsk_id", nullable = false, updatable = false, insertable = false)
+//    @JsonBackReference(value = "logTask")
+//    private TaskDomain task;
+//
+//    @ManyToOne(fetch = FetchType.LAZY, targetEntity = BoardDomain.class, optional = false, cascade = CascadeType.DETACH)
+//    @JoinColumn(name = "brd_id", nullable = false, updatable = false, insertable = false)
+//    @JsonBackReference(value = "logBoard")
+//    private BoardDomain board;
+
+
     /**
      * @Column indica que la columna es una columna de la tabla.
      * name="log_created_at" indica el nombre de la columna en la base de datos.
