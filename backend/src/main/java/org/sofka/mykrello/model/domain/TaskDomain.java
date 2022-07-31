@@ -5,6 +5,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -45,7 +46,7 @@ public class TaskDomain implements Serializable {
     private Integer board;
 
     @Column(name = "tsk_delivery_date")
-    private Instant delivery;
+    private Date delivery;
 
     @Column(name = "tsk_created_at")
     private Instant createdT = Instant.now();
@@ -54,7 +55,11 @@ public class TaskDomain implements Serializable {
     private Instant updatedT;
 
     @JsonManagedReference(value = "log-task")
+<<<<<<< HEAD
     @OneToMany(mappedBy = "task", fetch = FetchType.LAZY, targetEntity = LogDomain.class, orphanRemoval = true)
+=======
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY, targetEntity = LogDomain.class)
+>>>>>>> main
     private List<LogDomain> logs = new ArrayList<>();
 
     // Relaciones

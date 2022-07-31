@@ -248,7 +248,7 @@ a{
 .task{
     
     width: 70%;
-    height: 5.5em;
+    height: 7em;
 
     margin: auto auto;
     margin-top: 1em;
@@ -522,5 +522,15 @@ a{
 
     background-color: rgba(112, 112, 112, 0.474);
     backdrop-filter: blur(10px);
+
+}
+
+.salirDelBoard{
+
+    background-color: var(--colorRed);
+    border: none;
+    border-radius: 1em;
+     
+    width: 5em;
 
 }

@@ -33,6 +33,18 @@ public class LogDomain implements Serializable {
     @Column(name = "tsk_id_task")
     private Integer taskId;
 
+<<<<<<< HEAD
+=======
+   // @Column(name = "clm_id_previous")
+   // private Integer columnaPrevious;
+
+    //@Column(name = "clm_id_current")
+    //private Integer columnaCurrent;
+
+    @Column(name = "log_created_at", updatable = false)
+    private Instant createdAt = Instant.now();
+
+>>>>>>> main
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = ColumnDomain.class, optional = false)
     @JoinColumn(name = "clm_id_previous", updatable = false)
     @JsonBackReference(value = "logPrevious")
@@ -42,9 +54,6 @@ public class LogDomain implements Serializable {
     @JoinColumn(name = "clm_id_current", updatable = false)
     @JsonBackReference(value = "logCurrent")
     private ColumnDomain current;
-
-    @Column(name = "log_created_at", updatable = false)
-    private Instant createdAt = Instant.now();
 
     @JoinColumn(name = "tsk_id_task", insertable = false, updatable = false)
     @JsonBackReference(value = "log-task")

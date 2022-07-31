@@ -1,4 +1,4 @@
-import {getFunction} from "../Model/Services/Board.Service.mjs"
+import {getFunction} from "../Model/BoardModel/Board.Service.mjs"
 import {Url_Boards} from "../Utilities/config.mjs"
 import { Board } from "../Views/ViewBoards.mjs"
 

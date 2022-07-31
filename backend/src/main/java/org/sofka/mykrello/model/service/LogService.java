@@ -15,15 +15,31 @@ public class LogService implements LogServiceInterface {
     @Autowired
     private LogRepository logRepository;
 
+<<<<<<< HEAD
+    @Override
+    public List<LogDomain> findAll() {
+        return logRepository.findAll();
+=======
+
     @Override
     public List<LogDomain> findAll() {
         return logRepository.findAll();
     }
 
     @Override
+    public Optional<LogDomain> findById(Integer id) {
+        return logRepository.findById(id);
+>>>>>>> main
+    }
+
+    @Override
     public LogDomain create(LogDomain log) {
-        // TODO Auto-generated method stub
-        return null;
+        return logRepository.save(log);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        logRepository.deleteById(id);
     }
 
     @Override
