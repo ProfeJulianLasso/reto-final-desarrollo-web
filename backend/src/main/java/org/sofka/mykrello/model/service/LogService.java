@@ -41,4 +41,15 @@ public class LogService implements LogServiceInterface {
         var logDomain = logRepository.save(log);
         return logDomain;
     }
+
+    /**/
+
+    @Override
+    public LogDomain delete(Integer id) {
+        var logDomain = logRepository.findById(id);
+        logRepository.delete(logDomain.get());
+        return logDomain.get();
+    }
+
+    /**/
 }

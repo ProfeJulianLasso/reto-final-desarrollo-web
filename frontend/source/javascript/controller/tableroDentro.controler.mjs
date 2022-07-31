@@ -27,16 +27,15 @@ export class TableroDentroController {
         var idTablero = 2;
         const tasks = await servicio.getTaskFoBoard(idTablero);
         this.#privateView.init(tableros,tasks,idTablero);
-
     }  
+    
     
     async delete(id){
         debugger;
         const servicio = new TablerosService(this.#privateApiyURL);
         await servicio.deleteTask(id);
-        alert("Tarea Eliminada correctamente");
-        window.location.reload();
-
+            alert("Tarea Eliminada correctamente");
+            window.location.reload();
     }
     async create(nombreTarea,descripcion,idTablero,idColumna){
         
@@ -84,18 +83,19 @@ export class TableroDentroController {
         await servicio.editarTarea(nombre,id);
         //const tableros = await servicio.getTableros();
         //this.#privateView.init(tableros);
-        Swal.fire({
-            title: 'Seguro que desea mover la tarea?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, mover!'
-        }).then((result) => {
-            if (result.isConfirmed) {
+
+        const movimiento = idColumn == 1 || idColumn == 2 || idColumn == 3;
+        if(movimiento){
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                text: 'Tarea Movida correctamente',
+                showConfirmButton: false,
+                timer: 1300
+            }).then(() => {
                 window.location.reload()
-            }
-        })
+            })
+        }
     }
 }
 

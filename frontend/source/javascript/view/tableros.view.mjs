@@ -95,7 +95,7 @@ export class TablerosView {
 
 
     #privateCreateCard() {
-        return document.createElement('div');
+        return document.createElement('section');
     }
 
     #privateCreateButton() {
