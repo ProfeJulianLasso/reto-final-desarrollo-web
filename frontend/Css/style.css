@@ -533,4 +533,7 @@ a{
      
     width: 5em;
 
+}.salirDelBoard:hover{
+    background-color: var(--colorRedHover);
+    cursor: pointer;
 }

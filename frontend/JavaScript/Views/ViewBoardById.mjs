@@ -8,6 +8,12 @@ import {getFunction as getLog} from '../Model/LogModel/Log.service.mjs'
  * vista de un tablero especifico
  * @class
  */
+
+ const botonSalirpagina = document.createElement("button")
+ const todoButtonTitle = document.createElement("button")
+ const inProcessButtonTitle = document.createElement("button")
+ const finishButtonTitle = document.createElement("button")
+
 export class ViewBoard {
 
     constructor(){
@@ -19,13 +25,23 @@ export class ViewBoard {
      */
     getBoard = async() =>{
 
+        // Div raiz 
         const root = document.getElementById('tableContentColumns')
+        const body = document.getElementById('body')
 
+        // Boton de salir de la pagina
+        botonSalirpagina.className = "salirDelBoard"
+        botonSalirpagina.innerHTML="Salir"
+
+        body.append(botonSalirpagina)
+
+        // Datos traidos desde la Api
         const data = await getByIdFunction(urlBoard, localStorage.getItem("id"))
         const columns = data.data.columnsForBoard
         const task = data.data.task
         let index = 0
     
+        // Se crean las 3 columnas 
         columns.forEach( column => {
             
             index+=1
@@ -47,25 +63,15 @@ export class ViewBoard {
         divFinish.className="column"
         divFinish.id="finish"
 
-        const todoButtonTitle = document.createElement("button")
         todoButtonTitle.className = "titleBtn"
         
-        todoButtonTitle.addEventListener('click', ()=>{
-            viewModal("Crear")
-        })
-
         const atodoButtonTitle = document.createElement("a")
         atodoButtonTitle.innerHTML="ToDo"
         atodoButtonTitle.href = "#IrVentanaFlotante"
 
         todoButtonTitle.append(atodoButtonTitle)
 
-        const inProcessButtonTitle = document.createElement("button")
         inProcessButtonTitle.className = "titleBtn"
-
-        inProcessButtonTitle.addEventListener('click', ()=>{
-            viewModal("Crear")
-        })
         
         const ainProcessButtonTitle = document.createElement("a")
         ainProcessButtonTitle.innerHTML="In process"
@@ -73,17 +79,13 @@ export class ViewBoard {
 
         inProcessButtonTitle.append(ainProcessButtonTitle)
 
-        const finishButtonTitle = document.createElement("button")
         finishButtonTitle.className = "titleBtn"
         
         const afinishButtonTitle = document.createElement("a")
         afinishButtonTitle.innerHTML="Finish"
         afinishButtonTitle.href = "#IrVentanaFlotante"
 
-        finishButtonTitle.addEventListener('click', ()=>{
-            viewModal("Crear")
-        })
-
+        // Se agregan los elementos a los contenedores principales
         divTodo.append(todoButtonTitle)
         divInprocess.append(inProcessButtonTitle)
         divFinish.append(finishButtonTitle)
@@ -142,8 +144,8 @@ export class ViewBoard {
 }
 
 /**
-     * metodo para creacion e inyeccion de elementos al dom que muesta el modal
-     */
+    * metodo para creacion e inyeccion de elementos al dom que muesta el modal
+ */
 const viewModal = async ( typeModal, taskId ) => {
 
         const modal = document.getElementById('tableContentModal')
@@ -220,20 +222,31 @@ const viewModal = async ( typeModal, taskId ) => {
             enviarPutTask(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3,taskId)
     
         })
-        
-        // ButtonDeleteReset
-        const btnDeleteReset = document.createElement("input")
-        btnDeleteReset.type = "reset"
-        btnDeleteReset.className="modalBtnDevolver"
-        btnDeleteReset.value="Resetear data"
 
         // Textarea de el log de actualizaciones
         const txtAreaLogActualizaciones = document.createElement("textarea")
         txtAreaLogActualizaciones.className="modalTxtAreaHistory"
         txtAreaLogActualizaciones.id="historialCambios"
         txtAreaLogActualizaciones.placeholder="Historial de cambios"
+        txtAreaLogActualizaciones.readOnly = true
 
         logs(txtAreaLogActualizaciones, taskId)
+                
+        // ButtonDeleteReset
+        const btnDeleteReset = document.createElement("button")
+        btnDeleteReset.className="modalBtnDevolver"
+        btnDeleteReset.innerHTML="Resetear data"
+
+        btnDeleteReset.addEventListener('click', ()=>{
+            
+            inputTitleModal.value = null
+            txtAreaDescripcion.value = null
+            inputDeliveryDate.value = null
+            inputRdBtn1.checked = false
+            inputRdBtn2.checked = false
+            inputRdBtn3.checked = false
+
+        })
 
         // Append de elementos del modal
         modal.append(buttonModalSalir, inputTitleModal, txtAreaDescripcion,inputDeliveryDate, divRdioBtn1,divRdioBtn2,divRdioBtn3,btnCrearActualizar,btnDeleteReset,txtAreaLogActualizaciones)
@@ -246,6 +259,7 @@ const viewModal = async ( typeModal, taskId ) => {
  * @param {HTML tag} txtAreaLogActualizaciones 
  * @param {Number} id 
  */
+
 const logs = async(txtAreaLogActualizaciones, id) =>{
 
     const data = await getLog(urlLog)
@@ -273,6 +287,7 @@ const logs = async(txtAreaLogActualizaciones, id) =>{
  * metodo para eliminar un log asociado a una tarea
  * @param {Object} task 
  */
+
 const deleteLog = async(task) =>{
     if(task.logs.length){
         task.logs.forEach( log =>{
@@ -327,3 +342,22 @@ const enviarPutTask=async(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,i
     )
     window.location.href = 'http://127.0.0.1:5501/Html/board.html';
 }
+
+botonSalirpagina.addEventListener('click', ()=>{
+    window.location.href = "http://127.0.0.1:5501/Html/index.html"
+})
+
+// Lanza la funcion que muestra el modal de crear si dan click
+todoButtonTitle.addEventListener('click', ()=>{
+    viewModal("Crear")
+})
+
+// Lanza la funcion que muestra el modal de crear si dan click
+inProcessButtonTitle.addEventListener('click', ()=>{
+    viewModal("Crear")
+})
+
+// Lanza la funcion que muestra el modal de crear si dan click
+finishButtonTitle.addEventListener('click', ()=>{
+    viewModal("Crear")
+})
