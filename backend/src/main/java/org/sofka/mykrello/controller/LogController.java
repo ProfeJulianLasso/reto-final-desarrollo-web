@@ -1,13 +1,5 @@
 package org.sofka.mykrello.controller;
 
-<<<<<<< HEAD
-import org.sofka.mykrello.model.domain.LogDomain;
-import org.sofka.mykrello.model.service.LogService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-=======
 import org.sofka.mykrello.model.domain.LogDto;
 import org.sofka.mykrello.model.service.LogDtoService;
 import org.sofka.mykrello.model.service.LogService;
@@ -23,27 +15,12 @@ import org.springframework.web.bind.annotation.*;
  * @Params None
  * @Anotations RestController - CrossOrigin
  */
->>>>>>> main
 
 @CrossOrigin(value = "*")
 @RestController
 public class LogController {
 
     @Autowired
-<<<<<<< HEAD
-    private LogService logService;
-
-    @GetMapping("/log")
-    public List<LogDomain> getAll(){
-        return logService.findAll();
-    }
-
-    @DeleteMapping("/log/{id}")
-    public void delete(@PathVariable("id") Integer id){
-        logService.delete(id);
-    }
-
-=======
     private MyResponseUtility response;
     @Autowired
     private LogService logService;
@@ -125,5 +102,4 @@ public class LogController {
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
->>>>>>> main
 }

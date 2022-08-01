@@ -19,7 +19,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
-
+/***
+ * @Author [Julian Lasso] - Sebastian santis - Sebastian Torres
+ * @Description aqui se mapean los datos de la tabla "krl_board"
+ * @Params None
+ * @Anotations Entity - Table - Getter - Setter
+ */
 @Entity /**/ @Table(name = "krl_board")
 @Getter /**/ @Setter
 
@@ -34,7 +39,11 @@ public class BoardDomain implements Serializable {
             this.updatedAt = Instant.now();
     }
 
-    // Atributos
+    /***
+     * @Author [Julian Lasso] - Sebastian santis - Sebastian Torres
+     * @Description atributos del objeto tablero
+     * @Anotations Id - GeneratedValue - Column
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,7 +59,12 @@ public class BoardDomain implements Serializable {
     @Column(name = "brd_updated_at")
     private Instant updatedAt;
 
-    // Relaciones
+
+    /***
+     * @Author [Julian Lasso] - Sebastian santis - Sebastian Torres
+     * @Description mapeo de relaciones - un tablero muchas columnas para tablero & un tablero muchas tareas-
+     * @Anotations OneToMany - JsonManagedReference
+     */
     @OneToMany(fetch = FetchType.LAZY, targetEntity = ColumnForBoardDomain.class, cascade = CascadeType.ALL, mappedBy = "board")
     @JsonManagedReference(value = "columnsForBoard")
     private List<ColumnForBoardDomain> columnsForBoard = new ArrayList<>();
