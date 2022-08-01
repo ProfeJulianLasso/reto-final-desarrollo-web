@@ -1,6 +1,9 @@
 import { methodBody } from "./MethodBody.mjs"
 
-// Funcion para obtener los datos de mi api
+/**
+ * Esta funcion es la encrgada de obtener los datos de la api
+ * @param {String} url 
+ */
 export const getFunction = async(url) =>{
 
     try {
@@ -16,6 +19,11 @@ export const getFunction = async(url) =>{
 
 }
 
+/**
+ * Esta funcion es la encrgada de obtener los datos de la api de acurdo al id 
+ * @param {String} url 
+ * @param {Number} id 
+ */
 export const getByIdFunction = async(url,id) =>{
 
     try {
@@ -31,7 +39,12 @@ export const getByIdFunction = async(url,id) =>{
 
 }
 
-// Funcion para enviar datos a mi api
+/**
+ * Esta funcion es la encargada de enviar datos a la api
+ * @param {String} url 
+ * @param {String} name 
+ * @param {String} updatedAt 
+ */
 export const postFunction = async(url, name, updatedAt) =>{
 
     let data = methodBody('POST', name, updatedAt)
@@ -47,7 +60,13 @@ export const postFunction = async(url, name, updatedAt) =>{
 
 }
 
-// Funcion para actualizar datos de mi api
+/**
+ * esta funcion es la encargada de actualizar datos en la api
+ * @param {String} url 
+ * @param {Number} id 
+ * @param {String} name 
+ * @param {String} updatedAt 
+ */
 export const putFunction = async(url,id, name, updatedAt) => {
 
     let data = methodBody('PUT', name, updatedAt)
@@ -62,7 +81,11 @@ export const putFunction = async(url,id, name, updatedAt) => {
 
 }
 
-// Funcion para eliminar datos de mi api
+/**
+ * esta funcion se usa para eliminar un dato en la api
+ * @param {String} url 
+ * @param {Number} id 
+ */
 export const deleteFunction = async(url,id) =>{
 
     let data = methodBody('DELETE')

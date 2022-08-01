@@ -1,3 +1,9 @@
+/**
+ * metodo HTTP para el llamado de la api
+ * @param {String} method 
+ * @param {String} name 
+ * @param {String} updatedAt 
+ */
 export const methodBody = (method, name, updatedAt) =>{
 
     return {

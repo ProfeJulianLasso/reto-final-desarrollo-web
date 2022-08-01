@@ -1,3 +1,12 @@
+/**
+ * metodo HTTP para el llamado de la api
+ * @param {String} method 
+ * @param {String} name 
+ * @param {String} description 
+ * @param {Number} column 
+ * @param {Number} board 
+ * @param {String} date 
+ */
 export const methodBody = (method, name, description, column, board, date) =>{
 
     return {

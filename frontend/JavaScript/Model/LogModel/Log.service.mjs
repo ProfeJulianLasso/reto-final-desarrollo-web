@@ -1,6 +1,9 @@
 import { methodBody } from "./MethodBody.mjs"
 
-// Funcion para obtener los datos de mi api
+/**
+ * esta funcion trae los datos de la api
+ * @param {String} url 
+ */
 export const getFunction = async(url) =>{
 
     try {
@@ -16,6 +19,11 @@ export const getFunction = async(url) =>{
 
 }
 
+/**
+ * Funcion para traer un dato de acuerdo al id
+ * @param {String} url 
+ * @param {Number} id 
+ */
 export const getByIdFunction = async(url,id) =>{
 
     try {
@@ -31,7 +39,13 @@ export const getByIdFunction = async(url,id) =>{
 
 }
 
-// Funcion para enviar datos a mi api
+/**
+ * Funcion para crear un dato en la api
+ * @param {String} url 
+ * @param {Number} taskId 
+ * @param {Number} columnaPrevious 
+ * @param {Number} columnaCurrent 
+ */
 export const postFunction = async(url, taskId, columnaPrevious ,columnaCurrent) =>{
 
     let data = methodBody('POST', taskId, columnaPrevious ,columnaCurrent)
@@ -47,7 +61,14 @@ export const postFunction = async(url, taskId, columnaPrevious ,columnaCurrent) 
 
 }
 
-// Funcion para actualizar datos de mi api
+/**
+ * Funcion para actualizar datos de la api
+ * @param {String} url 
+ * @param {String} id 
+ * @param {Number} taskId 
+ * @param {Number} columnaPrevious 
+ * @param {Number} columnaCurrent 
+ */
 export const putFunction = async(url,id, taskId, columnaPrevious ,columnaCurrent) => {
 
     let data = methodBody('PUT', taskId, columnaPrevious ,columnaCurrent)
@@ -62,7 +83,12 @@ export const putFunction = async(url,id, taskId, columnaPrevious ,columnaCurrent
 
 }
 
-// Funcion para eliminar datos de mi api
+// 
+/**
+ * Funcion para eliminar ujn dato de la api
+ * @param {String} url 
+ * @param {Number} id 
+ */
 export const deleteFunction = async(url,id) =>{
 
     let data = methodBody('DELETE')

@@ -4,12 +4,19 @@ import { Url_Boards as urlBoard, Url_Task as urlTask, Url_Log as urlLog} from ".
 import { validar, btnChecked, columnCheck, actualizarDatosTarea, eliminarLog } from "../Utilities/UtilsFunctions.mjs";
 import {getFunction as getLog} from '../Model/LogModel/Log.service.mjs'
 
+/**
+ * vista de un tablero especifico
+ * @class
+ */
 export class ViewBoard {
 
     constructor(){
         // Utility class
     }
 
+    /**
+     * metodo para la creacion e inyeccion de elementos al dom que muestra el tablero seleccionado
+     */
     getBoard = async() =>{
 
         const root = document.getElementById('tableContentColumns')
@@ -134,6 +141,9 @@ export class ViewBoard {
     }
 }
 
+/**
+     * metodo para creacion e inyeccion de elementos al dom que muesta el modal
+     */
 const viewModal = async ( typeModal, taskId ) => {
 
         const modal = document.getElementById('tableContentModal')
@@ -231,6 +241,11 @@ const viewModal = async ( typeModal, taskId ) => {
 
 }
 
+/**
+ * metodo para manejar los logs de las tareas
+ * @param {HTML tag} txtAreaLogActualizaciones 
+ * @param {Number} id 
+ */
 const logs = async(txtAreaLogActualizaciones, id) =>{
 
     const data = await getLog(urlLog)
@@ -254,6 +269,10 @@ const logs = async(txtAreaLogActualizaciones, id) =>{
 
 }
 
+/**
+ * metodo para eliminar un log asociado a una tarea
+ * @param {Object} task 
+ */
 const deleteLog = async(task) =>{
     if(task.logs.length){
         task.logs.forEach( log =>{
@@ -262,6 +281,15 @@ const deleteLog = async(task) =>{
     }
 }
 
+/**
+ * metodo para crear una tarea
+ * @param {HTML tag} inputTitleModal 
+ * @param {HTML tag} txtAreaDescripcion 
+ * @param {HTML tag} inputDeliveryDate 
+ * @param {HTML tag} inputRdBtn1 
+ * @param {HTML tag} inputRdBtn2 
+ * @param {HTML tag} inputRdBtn3 
+ */
 const enviarPostTask =async(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3)=>{
     validar(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3) ? 
     alert("Faltan datos por ingresar para enviar el formulario"):
@@ -275,6 +303,16 @@ const enviarPostTask =async(inputTitleModal,txtAreaDescripcion,inputDeliveryDate
     )
 }
 
+/**
+ * 
+ * @param {HTML tag} inputTitleModal 
+ * @param {HTML tag} txtAreaDescripcion 
+ * @param {HTML tag} inputDeliveryDate 
+ * @param {HTML tag} inputRdBtn1 
+ * @param {HTML tag} inputRdBtn2 
+ * @param {HTML tag} inputRdBtn3 
+ * @param {Number} taskId 
+ */
 const enviarPutTask=async(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3,taskId)=>{
     validar(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3,taskId) ? 
     alert("Faltan datos por ingresar para enviar el formulario"): 

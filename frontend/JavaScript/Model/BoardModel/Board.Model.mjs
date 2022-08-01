@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * modelo del tablero
+ * @class
+ */
 export class BoardModel {
 
     #privateID;

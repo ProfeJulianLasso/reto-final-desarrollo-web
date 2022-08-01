@@ -3,6 +3,10 @@ import { getByIdFunction, postFunction ,deleteFunction,putFunction } from "../Mo
 import { Url_Boards as url } from "../Utilities/config.mjs";
 import { eliminarLog } from "../Utilities/UtilsFunctions.mjs";
 
+/**
+ * vista de los tableros
+ * @class
+ */
 export class Board {
 
   #Board;
@@ -15,6 +19,9 @@ export class Board {
 
     }
     
+    /**
+     * metodo para la creacion e inyeccion de elementos al dom que muestra los tableros
+     */
     #privateGenerateBoard() {
 
         const div = document.getElementById("tableContent");

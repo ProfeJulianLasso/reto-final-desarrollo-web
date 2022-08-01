@@ -2,6 +2,10 @@
 import { Url_Task as url } from '../../Utilities/config.mjs'
 import {postFunction,putFunction} from './Task.Service.mjs'
 
+/**
+ * modelo de la tarea
+ * @class
+ */
 class Task {
 
     #id
