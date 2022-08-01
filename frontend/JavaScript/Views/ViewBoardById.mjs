@@ -119,12 +119,7 @@ export class ViewBoard {
 
                 if(confirm("Estas seguro de eliminar esta tarea")){
                     
-                    if(task.logs.length){
-                        task.logs.forEach( log =>{
-                            eliminarLog(log.id)
-                        })
-                    }
-
+                    deleteLog(task)
                     deleteFunction(urlTask, task.id)
 
                 }
@@ -208,37 +203,12 @@ const viewModal = async ( typeModal, taskId ) => {
         // datos de la tarea en los input en dado caso sea editar
         actualizarDatosTarea (taskId,btnCrearActualizar,urlTask,inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3)
       
-
         btnCrearActualizar.addEventListener("click", async ()=> {
 
-            if(btnCrearActualizar.innerHTML === "Crear"){
-
-                validar(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3) ? 
-                alert("Faltan datos por ingresar para enviar el formulario"):
-                await postFunction(
-                    urlTask,
-                    inputTitleModal.value,
-                    txtAreaDescripcion.value,
-                    btnChecked(inputRdBtn1,inputRdBtn2),
-                    localStorage.getItem("id"),
-                    inputDeliveryDate.value + "T00:00:00.00"
-                )
-
-            }else{ 
-                validar(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3) ? 
-                alert("Faltan datos por ingresar para enviar el formulario"): 
-                await putFunction(
-                    urlTask,
-                    taskId,
-                    inputTitleModal.value,
-                    txtAreaDescripcion.value,
-                    btnChecked(inputRdBtn1,inputRdBtn2),
-                    localStorage.getItem("id"),
-                    inputDeliveryDate.value + "T00:00:00.00"
-                )
-                window.location.href = 'http://127.0.0.1:5501/Html/board.html';
-            }
-                
+            (btnCrearActualizar.innerHTML === "Crear")?
+            enviarPostTask(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3):
+            enviarPutTask(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3,taskId)
+    
         })
         
         // ButtonDeleteReset
@@ -284,3 +254,38 @@ const logs = async(txtAreaLogActualizaciones, id) =>{
 
 }
 
+const deleteLog = async(task) =>{
+    if(task.logs.length){
+        task.logs.forEach( log =>{
+            eliminarLog(log.id)
+        })
+    }
+}
+
+const enviarPostTask =async(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3)=>{
+    validar(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3) ? 
+    alert("Faltan datos por ingresar para enviar el formulario"):
+    await postFunction(
+        urlTask,
+        inputTitleModal.value,
+        txtAreaDescripcion.value,
+        btnChecked(inputRdBtn1,inputRdBtn2),
+        localStorage.getItem("id"),
+        inputDeliveryDate.value + "T00:00:00.00"
+    )
+}
+
+const enviarPutTask=async(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3,taskId)=>{
+    validar(inputTitleModal,txtAreaDescripcion,inputDeliveryDate,inputRdBtn1,inputRdBtn2,inputRdBtn3,taskId) ? 
+    alert("Faltan datos por ingresar para enviar el formulario"): 
+    await putFunction(
+        urlTask,
+        taskId,
+        inputTitleModal.value,
+        txtAreaDescripcion.value,
+        btnChecked(inputRdBtn1,inputRdBtn2),
+        localStorage.getItem("id"),
+        inputDeliveryDate.value + "T00:00:00.00"
+    )
+    window.location.href = 'http://127.0.0.1:5501/Html/board.html';
+}
