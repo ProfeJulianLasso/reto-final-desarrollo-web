@@ -2,7 +2,7 @@ import { getByIdFunction } from "../Model/BoardModel/Board.Service.mjs";
 import { postFunction, putFunction, deleteFunction } from "../Model/TaskModel/Task.Service.mjs";
 import { Url_Boards as urlBoard, Url_Task as urlTask, Url_Log as urlLog} from "../Utilities/config.mjs";
 import { validar, btnChecked, columnCheck, actualizarDatosTarea, eliminarLog } from "../Utilities/UtilsFunctions.mjs";
-import {getFunction as getLog, postFunction as postLog} from '../Model/LogModel/Log.service.mjs'
+import {getFunction as getLog} from '../Model/LogModel/Log.service.mjs'
 
 export class ViewBoard {
 
@@ -236,6 +236,7 @@ const viewModal = async ( typeModal, taskId ) => {
                     localStorage.getItem("id"),
                     inputDeliveryDate.value + "T00:00:00.00"
                 )
+                window.location.href = 'http://127.0.0.1:5501/Html/board.html';
             }
                 
         })
